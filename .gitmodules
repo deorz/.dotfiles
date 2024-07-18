@@ -1,0 +1,6 @@
+[submodule ".zsh_plugins/fzf-tab"]
+	path = .zsh_plugins/fzf-tab
+	url = https://github.com/Aloxaf/fzf-tab
+[submodule ".zsh_plugins/zsh-bat"]
+	path = .zsh_plugins/zsh-bat
+	url = https://github.com/fdellwing/zsh-bat.git
