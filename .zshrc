@@ -17,7 +17,6 @@ autoload -U compinit; compinit
 ZSH_PLUGINS_DIR=~/.zsh_plugins
 
 source $ZSH_PLUGINS_DIR/fzf-tab/fzf-tab.plugin.zsh
-source $ZSH_PLUGINS_DIR/zsh-bat/zsh-bat.plugin.zsh
 
 ### ---- Completion options and styling -----------------------------------
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
@@ -50,7 +49,6 @@ setopt hist_ignore_space       # Ignores all commands starting with a blank spac
 alias ls="lsd"
 alias zi="cdi"
 alias htop="btop"
-# alias cat="bat"
 
 ### ---- load Pyenv ---------
 export PYENV_ROOT="$HOME/.pyenv"
@@ -73,6 +71,9 @@ function nvims() {
   fi
   NVIM_APPNAME=$config nvim $@
 }
+
+### ---- Add Poetry to PATH ----------------------
+export PATH="/Users/deorz/.local/bin:$PATH"
 
 ### ---- Load Utilities  -----------------------------------
 eval "$(zoxide init --cmd cd zsh)"
