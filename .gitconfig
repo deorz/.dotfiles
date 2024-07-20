@@ -1,5 +1,8 @@
 [init]
-	defaultBranch = master
+    defaultBranch = master
 [user]
-	name = Denis Orzhenovskiy
-	email = thedamnation1044@yandex.ru
+    name = Denis Orzhenovskiy
+    email = thedamnation1044@yandex.ru
+
+[includeIf "gitdir:~/Work/"]
+    path = ~/Work/.gitconfig
