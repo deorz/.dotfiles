@@ -61,7 +61,7 @@ export NVM_DIR="$HOME/.nvm"
 
 ### ---- Neovim Configuration Switcher --------------------------
 function nvims() {
-  items=("LazyNvim" "NvChad" "AstroNvim" "DeorzNvim" "GenezisNvim")
+  items=("LazyNvim" "DeorzNvim" "NvChad" "AstroNvim")
   config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
   if [[ -z $config ]]; then
     echo "Nothing selected"
