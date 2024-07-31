@@ -36,6 +36,24 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 # switch group using `<` and `>`
 zstyle ':fzf-tab:*' switch-group '<' '>'
 
+### ------------------- Fzf Settings ------------------------------------
+# Setting theme for fzf
+FZF_DEFAULT_OPTS="\
+  --color=bg+:#313244,spinner:#f5e0dc,hl:#f38ba8 \
+  --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+  --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
+export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+
+_fzf_compgen_path() {
+  fd --hidden --exclude .git . "$1"
+}
+
+_fzf_compgen_dir() {
+  fd --type=d --hidden --exclude .git . "$1"
+}
+
 ### ---- History Configuration -----------------------------------
 HISTSIZE=1000000               # How many lines of history to keep in memory
 HISTFILE=~/.zsh_history     # Where to save history to disk
@@ -49,6 +67,8 @@ setopt hist_ignore_space       # Ignores all commands starting with a blank spac
 alias ls="lsd"
 alias zi="cdi"
 alias htop="btop"
+alias find="fd"
+alias grep="rg"
 
 ### ---- load Pyenv ---------
 export PYENV_ROOT="$HOME/.pyenv"
