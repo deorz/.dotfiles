@@ -92,7 +92,8 @@ function nvims() {
   NVIM_APPNAME=$config nvim $@
 }
 
-### ---- Add Poetry to PATH ----------------------
+### ---- Add Poetry & libpq(psql) to PATH ----------------------
+export PATH="/usr/local/opt/libpq/bin:$PATH"
 export PATH="/Users/deorz/.local/bin:$PATH"
 
 ### ---- Load Utilities  -----------------------------------
