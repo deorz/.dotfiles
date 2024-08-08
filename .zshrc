@@ -70,11 +70,9 @@ alias htop="btop"
 alias find="fd"
 alias grep="rg"
 
-# Need to set as variable cause alias reassignes nvim command
-NVIM_EXECUTABLE=/opt/homebrew/bin/nvim
-
-alias vim="NVIM_APPNAME="" $NVIM_EXECUTABLE"
-alias nvim="NVIM_APPNAME=DeorzNvim $NVIM_EXECUTABLE"
+# Neovim aliases
+alias vim="NVIM_APPNAME="" command nvim"
+alias nvim="NVIM_APPNAME=DeorzNvim command nvim"
 
 ### ---- load Pyenv and libpq(psql) ---------
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
@@ -86,22 +84,24 @@ eval "$(pyenv init -)"
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
 
-### ---- Neovim Configuration Switcher --------------------------
-function nvims() {
-  items=("DeorzNvim" "LazyNvim" "NvChad" "AstroNvim")
-  config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
-  if [[ -z $config ]]; then
-    echo "Nothing selected"
-    return 0
-  elif [[ $config == "default" ]]; then
-    config=""
-  fi
-  NVIM_APPNAME=$config nvim $@
-}
+# ### ---- Neovim Configuration Switcher --------------------------
+# function nvims() {
+#   items=("DeorzNvim" "LazyNvim" "NvChad" "AstroNvim")
+#   config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
+#   if [[ -z $config ]]; then
+#     echo "Nothing selected"
+#     return 0
+#   elif [[ $config == "default" ]]; then
+#     config=""
+#   fi
+#   NVIM_APPNAME=$config nvim $@
+# }
 
 ### ---- Add Poetry & libpq(psql) to PATH ----------------------
 export PATH="/usr/local/opt/libpq/bin:$PATH"
 export PATH="/Users/deorz/.local/bin:$PATH"
+
+EDITOR="command nvim"
 
 ### ---- Load Utilities  -----------------------------------
 eval "$(zoxide init --cmd cd zsh)"

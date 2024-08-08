@@ -9,6 +9,7 @@ return {
 		},
 		opts = {
 			ensure_installed = {
+				"eslint",
 				"docker_compose_language_service",
 				"dockerls",
 				"jsonls",
@@ -17,6 +18,7 @@ return {
 				"pyright",
 				"rust_analyzer",
 				"sqlls",
+				"tsserver",
 				"yamlls",
 			},
 		},

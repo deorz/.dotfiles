@@ -10,6 +10,8 @@ return {
 				swift = { "swiftlint" },
 				toml = { "taplo" },
 				python = { "ruff_format" },
+				javascript = { "prettier", "eslint_d", stop_after_first = true },
+				typescript = { "prettier", "eslint_d", stop_after_first = true },
 			},
 			format_after_save = {
 				lsp_format = "fallback",

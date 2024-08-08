@@ -6,6 +6,8 @@ return {
 				"docker-compose-language-service",
 				"dockerfile-language-server",
 				"editorconfig-checker",
+				"eslint-lsp",
+				"eslint_d",
 				-- TODO(deorz): Needs GO executable
 				-- "go-debug-adapter",
 				-- "goimports",
@@ -20,6 +22,7 @@ return {
 				"swiftlint",
 				"taplo",
 				"tree-sitter-cli",
+				"typescript-language-server",
 				"vim-language-server",
 				"yaml-language-server",
 				"yamlfix",
