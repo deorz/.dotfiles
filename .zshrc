@@ -70,7 +70,14 @@ alias htop="btop"
 alias find="fd"
 alias grep="rg"
 
-### ---- load Pyenv ---------
+# Need to set as variable cause alias reassignes nvim command
+NVIM_EXECUTABLE=/opt/homebrew/bin/nvim
+
+alias vim="NVIM_APPNAME="" $NVIM_EXECUTABLE"
+alias nvim="NVIM_APPNAME=DeorzNvim $NVIM_EXECUTABLE"
+
+### ---- load Pyenv and libpq(psql) ---------
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
