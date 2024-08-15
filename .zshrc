@@ -101,8 +101,6 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="/usr/local/opt/libpq/bin:$PATH"
 export PATH="/Users/deorz/.local/bin:$PATH"
 
-EDITOR="command nvim"
-
 ### ---- Load Utilities  -----------------------------------
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(fzf --zsh)"
