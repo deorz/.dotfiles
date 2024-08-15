@@ -2,6 +2,11 @@ vim.g.mapleader = " "
 
 local keymap = vim.keymap
 
+-- Buffer cycling
+keymap.set("n", "<leader>bn", "<cmd>bnext<cr>", { desc = "Next Buffer" })
+keymap.set("n", "<leader>bp", "<cmd>bprev<cr>", { desc = "Previous Buffer" })
+keymap.set("n", "<leader>bx", "<cmd>bd<cr>", { desc = "Delete Buffer" })
+
 -- Better Indent
 keymap.set("v", "<", "<gv")
 keymap.set("v", ">", ">gv")
@@ -33,7 +38,12 @@ keymap.set("n", "<leader>sc", "<cmd>nohl<cr>", { desc = "Clear Search Highlights
 ---- FzfLua
 keymap.set("n", "<leader>sb", "<cmd>FzfLua buffers<cr>", { desc = "FZF Open Buffers Picker" })
 keymap.set("n", "<leader>sf", "<cmd>FzfLua files<cr>", { desc = "FZF Open File Picker" })
-keymap.set("n", "<leader>s/", "<cmd>FzfLua grep_project<cr>", { desc = "FZF Open Find in Files" })
+keymap.set(
+	"n",
+	"<leader>s/",
+	"<cmd>lua require'fzf-lua'.grep_project({ prompt='Search> '})<cr>",
+	{ desc = "FZF Open Find in Files" }
+)
 keymap.set("n", "<leader>sk", "<cmd>FzfLua keymaps<cr>", { desc = "FZF Open Keymaps List" })
 keymap.set("n", "<leader>sr", "<cmd>FzfLua registers<cr>", { desc = "FZF Open Search Registers List" })
 keymap.set("n", "<leader>sm", "<cmd>FzfLua manpages<cr>", { desc = "FZF Open Search Manpages" })
@@ -65,10 +75,3 @@ keymap.set("n", "<leader>cr", function()
 end, { expr = true, desc = "Incremental Rename" })
 
 -- Git
-keymap.set("n", "<leader>gbl", function()
-	require("gitsigns").blame_line({ full = true })
-end, { desc = "Blame Line" })
-
-keymap.set("n", "<leader>ghp", function()
-	require("gitsigns").preview_hunk()
-end, { desc = "Preview Hunk Inline" })

@@ -1,7 +1,11 @@
 return {
 	{
-		"lewis6991/gitsigns.nvim",
-		event = { "BufReadPre", "BufNewFile" },
+		"echasnovski/mini.diff",
+		version = "*",
+		opts = {},
+	},
+	{
+		"sindrets/diffview.nvim",
 		opts = {},
 	},
 }

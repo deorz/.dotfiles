@@ -8,7 +8,8 @@ return {
 		opts = {
 			options = {
 				theme = "auto",
-				section_separators = { left = "", right = "" },
+				section_separators = { left = "█", right = "█" },
+				component_separators = { left = "", right = "" },
 			},
 			extensions = {
 				"fzf",
@@ -62,24 +63,6 @@ return {
 					{
 						require("lazy.status").updates,
 						cond = require("lazy.status").has_updates,
-					},
-					{
-						"diff",
-						symbols = {
-							added = " ",
-							modified = " ",
-							removed = " ",
-						},
-						source = function()
-							local gitsigns = vim.b.gitsigns_status_dict
-							if gitsigns then
-								return {
-									added = gitsigns.added,
-									modified = gitsigns.changed,
-									removed = gitsigns.removed,
-								}
-							end
-						end,
 					},
 				},
 				lualine_y = {

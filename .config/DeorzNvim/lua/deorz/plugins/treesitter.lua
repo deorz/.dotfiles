@@ -22,6 +22,7 @@ return {
 				"markdown",
 				"markdown_inline",
 				"python",
+				"go",
 				"regex",
 				"toml",
 				"vim",
@@ -41,8 +42,23 @@ return {
 					end
 				end,
 			},
-			incremental_selection = { enable = false },
-			textobjects = { enable = false },
+			incremental_selection = { enable = true },
+			textobjects = {
+				select = {
+					enable = true,
+					lookahead = true,
+					keymaps = {
+						["ap"] = "@parameter.outer",
+						["ip"] = "@parameter.inner",
+						["af"] = "@function.outer",
+						["if"] = "@function.inner",
+						["ac"] = "@class.outer",
+						["ic"] = "@class.inner",
+						["al"] = "@loop.outer",
+						["il"] = "@loop.inner",
+					},
+				},
+			},
 		},
 		config = function(_, opts)
 			require("nvim-treesitter.configs").setup(opts)

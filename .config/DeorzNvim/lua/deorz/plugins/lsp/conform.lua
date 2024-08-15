@@ -12,6 +12,7 @@ return {
 				python = { "ruff_format" },
 				javascript = { "prettier", "eslint_d", stop_after_first = true },
 				typescript = { "prettier", "eslint_d", stop_after_first = true },
+				go = { "goimports", "gofumpt" },
 			},
 			format_after_save = {
 				lsp_format = "fallback",

@@ -9,6 +9,7 @@ return {
 				flavour = "mocha",
 				transparent_background = true,
 				integrations = {
+					diffview = true,
 					mason = true,
 					notify = true,
 					noice = true,
@@ -22,7 +23,6 @@ return {
 					},
 					mini = {
 						enabled = true,
-						indentscope_color = "",
 					},
 					colorful_winsep = {
 						enabled = true,

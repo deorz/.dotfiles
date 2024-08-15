@@ -9,9 +9,11 @@ return {
 		},
 		opts = {
 			ensure_installed = {
+				"bashls",
 				"eslint",
 				"docker_compose_language_service",
 				"dockerls",
+				"gopls",
 				"jsonls",
 				"lua_ls",
 				"markdown_oxide",
@@ -107,6 +109,28 @@ return {
 						},
 					})
 				end,
+				["gopls"] = function()
+					lspconfig.lua_ls.setup({
+						capabilities = capabilities,
+						settings = {
+							gopls = {
+								completeUnimported = true,
+								usePlaceholders = true,
+								analysis = {
+									unusedparams = true,
+								},
+							},
+						},
+					})
+				end,
+			})
+		end,
+	},
+	{
+		"neovim/nvim-lspconfig",
+		config = function()
+			require("lspconfig").sourcekit.setup({
+				capabilities = require("cmp_nvim_lsp").default_capabilities(),
 			})
 		end,
 	},

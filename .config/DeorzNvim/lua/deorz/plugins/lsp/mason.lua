@@ -3,14 +3,16 @@ return {
 		"williamboman/mason.nvim",
 		opts = {
 			ensure_installed = {
+				"bash-language-server",
+				"debugpy",
 				"docker-compose-language-service",
 				"dockerfile-language-server",
 				"editorconfig-checker",
 				"eslint-lsp",
 				"eslint_d",
-				-- TODO(deorz): Needs GO executable
-				-- "go-debug-adapter",
-				-- "goimports",
+				"gopls",
+				"gofumpt",
+				"goimports",
 				"json-lsp",
 				"lua-language-server",
 				"markdown-oxide",

@@ -12,6 +12,8 @@ opt.autoindent = true -- copy indent from current line when starting new one
 
 -- line wrapping
 opt.wrap = false -- disable line wrapping
+vim.cmd("set list")
+vim.cmd("set listchars=trail:.")
 
 -- search settings
 opt.ignorecase = true -- ignore case when searching
@@ -44,7 +46,3 @@ opt.swapfile = false
 
 -- Confirm on exit
 opt.confirm = true
-
-vim.g.autoformat = false
-
-vim.b.autoformat = false
