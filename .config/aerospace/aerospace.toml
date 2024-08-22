@@ -8,6 +8,7 @@ exec-on-workspace-change = [
 ]
 on-focus-changed = [
   'exec-and-forget sketchybar --trigger aerospace_event EVENT=FOCUS_CHANGED',
+  'move-mouse window-lazy-center',
 ]
 
 enable-normalization-flatten-containers = true
@@ -58,8 +59,6 @@ alt-w = 'workspace web'
 alt-t = 'workspace term'
 # Editor
 alt-i = 'workspace ide'
-# Rest Client
-alt-r = 'workspace rest'
 # Other
 alt-o = 'workspace other'
 
@@ -83,10 +82,6 @@ alt-shift-t = [
 alt-shift-i = [
   'move-node-to-workspace ide',
   'exec-and-forget sketchybar --trigger aerospace_event EVENT=WINDOW_MOVED NEW_WORKSPACE=ide',
-]
-alt-shift-r = [
-  'move-node-to-workspace rest',
-  'exec-and-forget sketchybar --trigger aerospace_event EVENT=WINDOW_MOVED NEW_WORKSPACE=rest',
 ]
 alt-shift-o = [
   'move-node-to-workspace other',
@@ -115,6 +110,10 @@ run = 'layout floating'
 
 [[on-window-detected]]
 if.app-id = ''
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.dexterleng.ProNotes'
 run = 'layout floating'
 
 [[on-window-detected]]
