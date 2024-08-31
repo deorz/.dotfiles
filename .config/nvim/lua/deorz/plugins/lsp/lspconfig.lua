@@ -48,15 +48,10 @@ return {
 					local keymap = vim.keymap
 
 					opts.desc = "LSP Show References"
-					keymap.set("n", "gr", "<cmd>FzfLua lsp_references<CR>", opts)
+					keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", opts)
 
-					opts.desc = "LSP Go To Definition"
-					keymap.set(
-						"n",
-						"gd",
-						"<cmd>FzfLua lsp_definitions jump_to_single_result=true ignore_current_line=true<cr>",
-						opts
-					)
+					opts.desc = "LSP Go To Definitions"
+					keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<cr>", opts)
 
 					opts.desc = "Code Actions"
 					keymap.set({ "n", "v" }, "<leader>ca", buf.code_action, opts)

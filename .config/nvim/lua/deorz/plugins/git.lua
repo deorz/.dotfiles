@@ -1,6 +1,6 @@
 return {
 	{
-		"smjonas/inc-rename.nvim",
+		"sindrets/diffview.nvim",
 		opts = {},
 	},
 }

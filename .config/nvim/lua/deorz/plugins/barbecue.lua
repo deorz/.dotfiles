@@ -8,7 +8,7 @@ return {
 			"nvim-tree/nvim-web-devicons",
 		},
 		opts = {
-			theme = "catppuccin-mocha",
+			theme = "tokyonight",
 		},
 	},
 }

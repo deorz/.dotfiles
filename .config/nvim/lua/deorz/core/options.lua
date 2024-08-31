@@ -13,7 +13,7 @@ opt.autoindent = true -- copy indent from current line when starting new one
 -- line wrapping
 opt.wrap = false -- disable line wrapping
 vim.cmd("set list")
-vim.cmd("set listchars=trail:.")
+vim.cmd("set listchars=tab:→\\ ,trail:·")
 
 -- search settings
 opt.ignorecase = true -- ignore case when searching

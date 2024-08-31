@@ -3,7 +3,7 @@ return {
 		"deorz/venv-selector.nvim",
 		dependencies = {
 			"neovim/nvim-lspconfig",
-			{ "nvim-telescope/telescope.nvim", branch = "0.1.x" },
+			{ "nvim-telescope/telescope.nvim", version = false },
 		},
 		event = "VeryLazy",
 		branch = "regexp",
