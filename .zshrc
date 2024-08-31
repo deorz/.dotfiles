@@ -70,10 +70,6 @@ alias htop="btop"
 alias find="fd"
 alias grep="rg"
 
-# Neovim aliases
-alias vim="NVIM_APPNAME="" command nvim"
-alias nvim="NVIM_APPNAME=DeorzNvim command nvim"
-
 ### ---- load Pyenv and libpq(psql) ---------
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
