@@ -101,6 +101,3 @@ export PATH="/Users/deorz/.local/bin:$PATH"
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(fzf --zsh)"
 eval "$(starship init zsh)"
-
-# Randomly run Macchina (Neofetch in Rust)
-((RANDOM % 10 == 1)) && macchina
