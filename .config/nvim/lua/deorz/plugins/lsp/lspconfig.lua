@@ -3,9 +3,10 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		dependencies = {
 			"williamboman/mason.nvim",
+			"hrsh7th/nvim-cmp",
 			"hrsh7th/cmp-nvim-lsp",
 			"neovim/nvim-lspconfig",
-			{ "folke/lazydev.nvim", opts = {} },
+			"folke/lazydev.nvim",
 		},
 		opts = {
 			ensure_installed = {
@@ -20,7 +21,6 @@ return {
 				"pyright",
 				"rust_analyzer",
 				"sqlls",
-				"tsserver",
 				"yamlls",
 			},
 		},
@@ -43,18 +43,40 @@ return {
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 				callback = function(ev)
-					local opts = { buffer = ev.buf, silent = true }
+					local opts = { buffer = ev.buf, noremap = true, silent = true }
 					local buf = vim.lsp.buf
 					local keymap = vim.keymap
 
-					opts.desc = "LSP Show References"
-					keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", opts)
+					opts.desc = "Go To Definition"
+					keymap.set("n", "gd", function()
+						MiniExtra.pickers.lsp({ scope = "definition" })
+					end, opts)
 
-					opts.desc = "LSP Go To Definitions"
-					keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<cr>", opts)
+					opts.desc = "Go To Declaration"
+					keymap.set("n", "gD", function()
+						MiniExtra.pickers.lsp({ scope = "declaration" })
+					end, opts)
+
+					opts.desc = "Go To Implementation"
+					keymap.set("n", "gi", function()
+						MiniExtra.pickers.lsp({ scope = "implementation" })
+					end, opts)
+
+					opts.desc = "Go To References"
+					keymap.set("n", "gr", function()
+						MiniExtra.pickers.lsp({ scope = "references" })
+					end, opts)
+
+					opts.desc = "Rename"
+					keymap.set("n", "<leader>cr", buf.rename, opts)
 
 					opts.desc = "Code Actions"
 					keymap.set({ "n", "v" }, "<leader>ca", buf.code_action, opts)
+
+					opts.desc = "Diagnostics"
+					keymap.set("n", "<leader>cd", function()
+						MiniExtra.pickers.diagnostic({ scope = "current" })
+					end, opts)
 				end,
 			})
 
@@ -119,14 +141,7 @@ return {
 					})
 				end,
 			})
-		end,
-	},
-	{
-		"neovim/nvim-lspconfig",
-		config = function()
-			require("lspconfig").sourcekit.setup({
-				capabilities = require("cmp_nvim_lsp").default_capabilities(),
-			})
+			require("lazydev").setup()
 		end,
 	},
 }

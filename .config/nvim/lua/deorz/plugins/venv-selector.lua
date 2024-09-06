@@ -1,6 +1,6 @@
 return {
 	{
-		"deorz/venv-selector.nvim",
+		"linux-cultist/venv-selector.nvim",
 		dependencies = {
 			"neovim/nvim-lspconfig",
 			{ "nvim-telescope/telescope.nvim", version = false },

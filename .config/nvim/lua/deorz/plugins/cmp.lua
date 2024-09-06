@@ -18,31 +18,23 @@ return {
 			vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
 			local cmp = require("cmp")
 			local defaults = require("cmp.config.default")()
-			local auto_select = true
 			return {
 				auto_brackets = {
 					"python",
 				}, -- configure any filetype to auto add brackets
 				completion = {
-					completeopt = "menu,menuone,noinsert" .. (auto_select and "" or ",noselect"),
+					completeopt = "menu,menuone,noinsert",
 				},
 				snippet = { -- configure how nvim-cmp interacts with snippet engine
 					expand = function(args)
 						luasnip.lsp_expand(args.body)
 					end,
 				},
-				preselect = auto_select and cmp.PreselectMode.Item or cmp.PreselectMode.None,
+				preselect = cmp.PreselectMode.Item,
 				mapping = cmp.mapping.preset.insert({
 					["<C-b>"] = cmp.mapping.scroll_docs(-4),
 					["<C-f>"] = cmp.mapping.scroll_docs(4),
-					["<C-Space>"] = cmp.mapping.complete(),
-					["<CR>"] = cmp.mapping.confirm({ select = auto_select }),
-					["<C-y>"] = cmp.mapping.confirm({ select = true }),
-					["<S-CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-					["<C-CR>"] = function(fallback)
-						cmp.abort()
-						fallback()
-					end,
+					["<CR>"] = cmp.mapping.confirm({ select = true }),
 				}),
 				sources = cmp.config.sources({
 					{ name = "luasnip" }, -- snippets

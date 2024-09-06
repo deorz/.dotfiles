@@ -24,7 +24,6 @@ return {
 				"swiftlint",
 				"taplo",
 				"tree-sitter-cli",
-				"typescript-language-server",
 				"vim-language-server",
 				"yaml-language-server",
 				"yamlfix",

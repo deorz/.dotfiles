@@ -12,8 +12,9 @@ opt.autoindent = true -- copy indent from current line when starting new one
 
 -- line wrapping
 opt.wrap = false -- disable line wrapping
-vim.cmd("set list")
-vim.cmd("set listchars=tab:→\\ ,trail:·")
+
+vim.o.list = true
+vim.o.listchars = table.concat({ "extends:…", "nbsp:␣", "precedes:…", "tab:→ ", "trail:·" }, ",")
 
 -- search settings
 opt.ignorecase = true -- ignore case when searching
@@ -33,6 +34,9 @@ opt.colorcolumn = "120"
 
 -- backspace
 opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
+-- go to previous/next line with h,l,left arrow and right arrow
+-- when cursor reaches end/beginning of line
+opt.whichwrap:append("<>[]hl")
 
 -- clipboard
 opt.clipboard:append("unnamedplus") -- use system clipboard as default register

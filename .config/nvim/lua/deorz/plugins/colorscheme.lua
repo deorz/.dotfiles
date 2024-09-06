@@ -47,11 +47,13 @@ return {
 				},
 				on_highlights = function(hl, c)
 					-- Override background for statusline
-					hl.MiniStatuslineFileinfo = { fg = c.fg_dark, bg = c.none }
-					hl.MiniStatuslineFilename = { fg = c.fg_dark, bg = c.none }
+					hl.MiniStatuslineFileinfo = { fg = c.green, bg = c.none }
+					hl.MiniStatuslineFilename = { fg = c.yellow, bg = c.none }
 					hl.MiniStatuslineInactive = { fg = c.blue, bg = c.none }
 					-- Override background for bufferline
 					hl.MiniTablineFill = { bg = c.none }
+					-- Override highlighting selected item for Mini.Pick
+					hl.MiniPickMatchMarked = { fg = c.yellow }
 				end,
 			})
 			vim.cmd.colorscheme("tokyonight")
