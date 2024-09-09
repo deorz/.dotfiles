@@ -66,7 +66,7 @@ setopt hist_ignore_space       # Ignores all commands starting with a blank spac
 ### ---- Aliases Configuration -----------------------------------
 alias ls="lsd"
 alias zi="cdi"
-alias htop="btop"
+alias htop="btm"
 alias find="fd"
 alias grep="rg"
 
