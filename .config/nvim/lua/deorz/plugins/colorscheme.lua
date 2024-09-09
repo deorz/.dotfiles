@@ -47,7 +47,7 @@ return {
 				},
 				on_highlights = function(hl, c)
 					-- Override background for statusline
-					hl.MiniStatuslineFileinfo = { fg = c.green, bg = c.none }
+					hl.MiniStatuslineFileinfo = { fg = c.red, bg = c.none }
 					hl.MiniStatuslineFilename = { fg = c.yellow, bg = c.none }
 					hl.MiniStatuslineInactive = { fg = c.blue, bg = c.none }
 					-- Override background for bufferline

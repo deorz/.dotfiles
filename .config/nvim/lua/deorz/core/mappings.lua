@@ -17,9 +17,6 @@ keymap.set("n", "<leader>bw", "<cmd>%bd|e#<cr>", { desc = "Close Other Buffers" 
 keymap.set("v", "<", "<gv")
 keymap.set("v", ">", ">gv")
 
--- Flash
--- keymap.set("n", "s", "<cmd>lua require('flash').jump()<cr>", { desc = "Flash" })
-
 -- ╔════════════════════╗
 -- ║  Explorer Keymaps  ║
 -- ╚════════════════════╝
@@ -70,7 +67,7 @@ end, { desc = "Toggle [G]it [D]iff View" })
 -- ║    LSP Keymaps    ║
 -- ╚═══════════════════╝
 keymap.set({ "n", "v" }, "<leader>cf", function()
-	require("conform").format({ lsp_format = "fallback", async = false, timeout_ms = 500 })
+	require("conform").format({ lsp_format = "fallback", async = true })
 end, { desc = "Format file" })
 
 vim.api.nvim_create_autocmd("FileType", {

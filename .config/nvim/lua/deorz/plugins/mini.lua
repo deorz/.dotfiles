@@ -5,7 +5,6 @@ return {
 		opts = {
 			mappings = {
 				choose_marked = "<C-q>",
-				move_start = nil,
 			},
 			window = {
 				config = {
@@ -48,7 +47,10 @@ return {
 							mini_pick.default_show(buf_id, items, query, { show_icons = true })
 						end,
 					},
-					mappings = { show_hidden = { char = "<C-g>", func = pick_hidden } },
+					mappings = {
+						move_start = nil,
+						show_hidden = { char = "<C-g>", func = pick_hidden },
+					},
 				}
 				return mini_pick.builtin.cli({ command = command }, opts)
 			end
@@ -205,8 +207,9 @@ return {
 							{ hl = "MiniStatuslineDevinfo", strings = { branch } },
 							{ hl = "MiniStatuslineFilename", strings = { filename, fileicon } },
 							"%=",
-							{ hl = "MiniStatuslineFileinfo", strings = { macro } },
-							{ hl = "MiniStatuslineFileinfo", strings = { diagnostics, fileinfo } },
+							{ hl = "MiniStatuslineFilename", strings = { macro } },
+							{ hl = "MiniStatuslineFileinfo", strings = { diagnostics } },
+							{ hl = "MiniStatuslineFilename", strings = { fileinfo } },
 							{ hl = mode, strings = { "%l:%L" } },
 						})
 					end,
@@ -289,24 +292,6 @@ return {
 		},
 	},
 	{
-		"echasnovski/mini-git",
-		version = false,
-		main = "mini.git",
-		opts = {},
-		config = function(_, opts)
-			require("mini.git").setup(opts)
-
-			-- Use only HEAD name as summary string
-			local format_summary = function(data)
-				local summary = vim.b[data.buf].minigit_summary
-				vim.b[data.buf].minigit_summary_string = summary.head_name or ""
-			end
-
-			local au_opts = { pattern = "MiniGitUpdated", callback = format_summary }
-			vim.api.nvim_create_autocmd("User", au_opts)
-		end,
-	},
-	{
 		"echasnovski/mini.surround",
 		version = false,
 		opts = {
@@ -368,11 +353,6 @@ return {
 	{
 		"echasnovski/mini.ai",
 		event = "VeryLazy",
-		opts = {},
-	},
-	{
-		"echasnovski/mini.diff",
-		version = false,
 		opts = {},
 	},
 	{

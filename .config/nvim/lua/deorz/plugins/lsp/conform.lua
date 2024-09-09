@@ -14,9 +14,7 @@ return {
 				typescript = { "prettier", "eslint_d", stop_after_first = true },
 				go = { "goimports", "gofumpt" },
 			},
-			format_after_save = {
-				lsp_format = "fallback",
-			},
+			format_after_save = nil,
 		},
 	},
 }

@@ -21,11 +21,15 @@ return {
 			return {
 				auto_brackets = {
 					"python",
-				}, -- configure any filetype to auto add brackets
+				},
 				completion = {
 					completeopt = "menu,menuone,noinsert",
 				},
-				snippet = { -- configure how nvim-cmp interacts with snippet engine
+				window = {
+					completion = cmp.config.window.bordered(),
+					documentation = cmp.config.window.bordered(),
+				},
+				snippet = {
 					expand = function(args)
 						luasnip.lsp_expand(args.body)
 					end,
@@ -37,26 +41,18 @@ return {
 					["<CR>"] = cmp.mapping.confirm({ select = true }),
 				}),
 				sources = cmp.config.sources({
-					{ name = "luasnip" }, -- snippets
 					{ name = "nvim_lsp" },
-					{ name = "buffer" }, -- text within current buffer
-					{ name = "path" }, -- file system paths
+					{ name = "luasnip" },
+					{ name = "buffer" },
+					{ name = "path" },
 				}),
 				formatting = {
-					format = function(_, item)
-						local widths = {
-							abbr = vim.g.cmp_widths and vim.g.cmp_widths.abbr or 40,
-							menu = vim.g.cmp_widths and vim.g.cmp_widths.menu or 30,
-						}
-
-						for key, width in pairs(widths) do
-							if item[key] and vim.fn.strdisplaywidth(item[key]) > width then
-								item[key] = vim.fn.strcharpart(item[key], 0, width - 1) .. "..."
-							end
-						end
-
-						return item
-					end,
+					format = require("lspkind").cmp_format({
+						mode = "symbol",
+						maxwidth = 50,
+						ellipsis_char = "...",
+						show_labelDetails = true,
+					}),
 				},
 				experimental = {
 					ghost_text = {
