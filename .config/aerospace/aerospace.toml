@@ -90,10 +90,6 @@ if.app-id = 'company.thebrowser.Browser'
 run = 'move-node-to-workspace web'
 
 [[on-window-detected]]
-if.app-id = 'com.tinyapp.TablePlus'
-run = 'move-node-to-workspace dev'
-
-[[on-window-detected]]
 if.app-id = 'dev.kdrag0n.MacVirt'
 run = 'move-node-to-workspace dev'
 
@@ -104,10 +100,6 @@ run = 'move-node-to-workspace dev'
 [[on-window-detected]]
 if.app-id = 'jan.ai.app'
 run = 'move-node-to-workspace ai'
-
-[[on-window-detected]]
-if.app-id = 'dev.zed.Zed'
-run = 'move-node-to-workspace ide'
 
 [[on-window-detected]]
 if.app-id = 'com.hnc.Discord'
