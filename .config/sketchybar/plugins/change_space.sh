@@ -1,1 +1,0 @@
-aerospace workspace $1
