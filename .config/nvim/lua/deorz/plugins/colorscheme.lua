@@ -1,61 +1,25 @@
 return {
 	{
-		"catppuccin/nvim",
-		name = "catppuccin",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			require("catppuccin").setup({
-				flavour = "mocha",
-				transparent_background = true,
-				integrations = {
-					diffview = true,
-					mason = true,
-					notify = true,
-					noice = true,
-					which_key = true,
-					gitsigns = true,
-					nvim_surround = true,
-					indent_blankline = {
-						enabled = true,
-						scope_color = "peach",
-						colored_indent_levels = true,
-					},
-					mini = {
-						enabled = true,
-					},
-					colorful_winsep = {
-						enabled = true,
-						color = "peach",
-					},
-				},
-			})
-
-			-- vim.cmd.colorscheme("catppuccin")
-		end,
-	},
-	{
 		"folke/tokyonight.nvim",
 		lazy = false,
 		priority = 1000,
-		config = function()
-			require("tokyonight").setup({
+		opts = function()
+			return {
 				transparent = true,
 				styles = {
 					sidebars = "transparent",
 					floats = "transparent",
 				},
 				on_highlights = function(hl, c)
-					-- Override background for statusline
-					hl.MiniStatuslineFileinfo = { fg = c.red, bg = c.none }
-					hl.MiniStatuslineFilename = { fg = c.yellow, bg = c.none }
-					hl.MiniStatuslineInactive = { fg = c.blue, bg = c.none }
 					-- Override background for bufferline
 					hl.MiniTablineFill = { bg = c.none }
-					-- Override highlighting selected item for Mini.Pick
-					hl.MiniPickMatchMarked = { fg = c.yellow }
+					-- Override hoghlight for render-markdown.nvim
+					hl.RenderMarkdownCode = { bg = c.none }
 				end,
-			})
+			}
+		end,
+		config = function(_, opts)
+			require("tokyonight").setup(opts)
 			vim.cmd.colorscheme("tokyonight")
 		end,
 	},

@@ -1,19 +1,34 @@
 return {
 	{
-		"deorz/venv-selector.nvim",
+		"linux-cultist/venv-selector.nvim",
 		dependencies = {
 			"neovim/nvim-lspconfig",
-			"deorz/mini.pick",
 			"mfussenegger/nvim-dap",
 			"mfussenegger/nvim-dap-python",
+			{
+				"nvim-telescope/telescope.nvim",
+				branch = "0.1.x",
+				dependencies = { "nvim-lua/plenary.nvim" },
+			},
 		},
-		event = "VeryLazy",
+		cmd = { "VenvSelect" },
+		ft = "python",
 		branch = "regexp",
 		opts = {
 			settings = {
 				options = {
 					notify_user_on_venv_activation = true,
 				},
+			},
+		},
+		keys = {
+			{
+				"<leader>cv",
+				"<cmd>VenvSelect<cr>",
+				"n",
+				noremap = true,
+				silent = true,
+				desc = "Open Python Venv Picker",
 			},
 		},
 	},

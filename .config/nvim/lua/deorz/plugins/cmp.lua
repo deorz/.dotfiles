@@ -54,12 +54,19 @@ return {
 						show_labelDetails = true,
 					}),
 				},
-				experimental = {
-					ghost_text = {
-						hl_group = "CmpGhostText",
-					},
-				},
+				-- experimental = {
+				-- 	ghost_text = {
+				-- 		hl_group = "CmpGhostText",
+				-- 	},
+				-- },
 				sorting = defaults.sorting,
+				performance = {
+					-- It is recommended to increase the timeout duration due to
+					-- the typically slower response speed of LLMs compared to
+					-- other completion sources. This is not needed when you only
+					-- need manual completion.
+					fetching_timeout = 2000,
+				},
 			}
 		end,
 	},

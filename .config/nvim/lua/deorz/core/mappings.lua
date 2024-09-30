@@ -7,61 +7,28 @@ local keymap = vim.keymap
 -- ╚═══════════════════════╝
 keymap.set("i", "jk", "<Esc>", { desc = "Exit From Insert Mode" })
 
+vim.api.nvim_create_autocmd("TermOpen", {
+	pattern = "term://*",
+	callback = function()
+	if vim.bo.filetype == "lazygit" then
+		return
+	end
+		keymap.set("t", "jk", [[<C-\><C-n>]], { desc = "Exit From Terminal Mode" })
+	end,
+})
+
 -- Buffer
 keymap.set("n", "<TAB>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 keymap.set("n", "<S-TAB>", "<cmd>bprev<cr>", { desc = "Previous Buffer" })
-keymap.set("n", "<leader>bx", "<cmd>bd<cr>", { desc = "Delete Buffer" })
-keymap.set("n", "<leader>bw", "<cmd>%bd|e#<cr>", { desc = "Close Other Buffers" })
 
 -- Indentation
 keymap.set("v", "<", "<gv")
 keymap.set("v", ">", ">gv")
 
 -- ╔════════════════════╗
--- ║  Explorer Keymaps  ║
--- ╚════════════════════╝
-keymap.set("n", "<leader>ee", function()
-	local buffer_name = vim.api.nvim_buf_get_name(0)
-	if buffer_name == "" or string.match(buffer_name, "Starter") then
-		require("mini.files").open(vim.loop.cwd())
-	else
-		require("mini.files").open(vim.api.nvim_buf_get_name(0))
-	end
-end, { desc = "Toggle Mini.Files window" })
-
--- ╔════════════════════╗
 -- ║   Search Keymaps   ║
 -- ╚════════════════════╝
 keymap.set("n", "<leader>sc", "<cmd>nohlsearch<cr>", { noremap = true, silent = true, desc = "Clear Search Highlight" })
-keymap.set("n", "<leader>sf", function()
-	require("mini.pick").registry.files()
-end, { noremap = true, silent = true, desc = "Open File Picker" })
-keymap.set("n", "<leader>sr", function()
-	require("mini.pick").builtin.resume()
-end, { noremap = true, silent = true, desc = "Resume Picker" })
-keymap.set("n", "<leader>sb", function()
-	require("mini.pick").builtin.buffers({ include_current = false })
-end, { noremap = true, silent = true, desc = "Open Buffer Picker" })
-keymap.set("n", "<leader>s/", function()
-	require("mini.pick").builtin.grep_live()
-end, { noremap = true, silent = true, desc = "Open Find in Files Picker" })
-keymap.set("n", "<leader>sl", function()
-	require("mini.extra").pickers.buf_lines({ scope = "current" })
-end, { nowait = true, desc = "Search Lines" })
-
--- ╔═══════════════════╗
--- ║    Git Keymaps    ║
--- ╚═══════════════════╝
-keymap.set("n", "<leader>go", "<cmd>lua MiniDiff.toggle_overlay()<cr>", { desc = "Toggle [G]it [O]verlay" })
-keymap.set("n", "<leader>gd", function()
-	if next(require("diffview.lib").views) == nil then
-		vim.cmd("DiffviewOpen")
-	else
-		vim.cmd("set hidden")
-		vim.cmd("DiffviewClose")
-		vim.cmd("set nohidden")
-	end
-end, { desc = "Toggle [G]it [D]iff View" })
 
 -- ╔═══════════════════╗
 -- ║    LSP Keymaps    ║
@@ -70,12 +37,28 @@ keymap.set({ "n", "v" }, "<leader>cf", function()
 	require("conform").format({ lsp_format = "fallback", async = true })
 end, { desc = "Format file" })
 
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "python" },
-	callback = function()
-		keymap.set("n", "<leader>cv", "<cmd>VenvSelect<cr>", { desc = "Open Python Venv Picker" })
-	end,
-})
+keymap.set("n", "<leader>cx", function()
+	vim.cmd("TSBufDisable autotag")
+	vim.cmd("TSBufDisable highlight")
+	vim.cmd("TSBufDisable incremental_selection")
+	vim.cmd("TSBufDisable indent")
+	vim.cmd("TSBufDisable playground")
+	vim.cmd("TSBufDisable query_linter")
+	vim.cmd("TSBufDisable rainbow")
+	vim.cmd("TSBufDisable refactor.highlight_definitions")
+	vim.cmd("TSBufDisable refactor.navigation")
+	vim.cmd("TSBufDisable refactor.smart_rename")
+	vim.cmd("TSBufDisable refactor.highlight_current_scope")
+	vim.cmd("TSBufDisable textobjects.swap")
+	vim.cmd("TSBufDisable textobjects.lsp_interop")
+	vim.cmd("TSBufDisable textobjects.select")
+	vim.cmd("LspStop")
+end, { noremap = true, silent = true, desc = "Disable code features (LSP, Treesitter)" })
+
+keymap.set("n", "<leader>cz", function()
+	vim.cmd("LspStop")
+	vim.cmd("LspStart")
+end, { noremap = true, silent = true, desc = "Restart LSP" })
 
 -- ╔══════════════════════╗
 -- ║    Tests Keymaps     ║

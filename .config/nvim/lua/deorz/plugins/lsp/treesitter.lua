@@ -47,21 +47,17 @@ return {
 				select = {
 					enable = true,
 					lookahead = true,
-					keymaps = {
-						["ap"] = "@parameter.outer",
-						["ip"] = "@parameter.inner",
-						["af"] = "@function.outer",
-						["if"] = "@function.inner",
-						["ac"] = "@class.outer",
-						["ic"] = "@class.inner",
-						["al"] = "@loop.outer",
-						["il"] = "@loop.inner",
-					},
 				},
 			},
 		},
 		config = function(_, opts)
 			require("nvim-treesitter.configs").setup(opts)
 		end,
+	},
+	{
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+		},
 	},
 }

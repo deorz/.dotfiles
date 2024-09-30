@@ -16,6 +16,7 @@ return {
 				"dockerls",
 				"gopls",
 				"jsonls",
+                "html",
 				"lua_ls",
 				"markdown_oxide",
 				"pyright",
@@ -43,28 +44,29 @@ return {
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 				callback = function(ev)
+                    local fzf_lua = require("fzf-lua")
 					local opts = { buffer = ev.buf, noremap = true, silent = true }
 					local buf = vim.lsp.buf
 					local keymap = vim.keymap
 
 					opts.desc = "Go To Definition"
 					keymap.set("n", "gd", function()
-						MiniExtra.pickers.lsp({ scope = "definition" })
+                        fzf_lua.lsp_definitions()
 					end, opts)
 
 					opts.desc = "Go To Declaration"
 					keymap.set("n", "gD", function()
-						MiniExtra.pickers.lsp({ scope = "declaration" })
+                        fzf_lua.lsp_declarations()
 					end, opts)
 
 					opts.desc = "Go To Implementation"
 					keymap.set("n", "gi", function()
-						MiniExtra.pickers.lsp({ scope = "implementation" })
+                        fzf_lua.lsp_implementations()
 					end, opts)
 
 					opts.desc = "Go To References"
 					keymap.set("n", "gr", function()
-						MiniExtra.pickers.lsp({ scope = "references" })
+                        fzf_lua.lsp_references()
 					end, opts)
 
 					opts.desc = "Rename"
@@ -75,7 +77,7 @@ return {
 
 					opts.desc = "Diagnostics"
 					keymap.set("n", "<leader>cd", function()
-						MiniExtra.pickers.diagnostic({ scope = "current" })
+                        fzf_lua.diagnostics_document()
 					end, opts)
 				end,
 			})
@@ -127,15 +129,12 @@ return {
 					})
 				end,
 				["gopls"] = function()
-					lspconfig.lua_ls.setup({
+					lspconfig.gopls.setup({
 						capabilities = capabilities,
 						settings = {
 							gopls = {
 								completeUnimported = true,
 								usePlaceholders = true,
-								analysis = {
-									unusedparams = true,
-								},
 							},
 						},
 					})

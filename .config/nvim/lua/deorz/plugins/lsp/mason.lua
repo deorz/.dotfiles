@@ -14,6 +14,7 @@ return {
 				"gofumpt",
 				"goimports",
 				"json-lsp",
+                "html-lsp",
 				"lua-language-server",
 				"markdown-oxide",
 				"prettier",
