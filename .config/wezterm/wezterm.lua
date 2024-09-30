@@ -4,9 +4,9 @@ local config = wezterm.config_builder()
 
 config = {
 	color_scheme = "Tokyo Night",
-	window_background_opacity = 0.7,
+	window_background_opacity = 0.80,
 	macos_window_background_blur = 0,
-	default_cursor_style = "BlinkingBar",
+	default_cursor_style = "SteadyBlock",
 	automatically_reload_config = true,
 	window_close_confirmation = "NeverPrompt",
 	adjust_window_size_when_changing_font_size = false,
