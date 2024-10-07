@@ -71,14 +71,14 @@ alias find="fd"
 alias grep="rg"
 
 ### ---- load Pyenv and libpq(psql) ---------
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+export PATH="$(brew --prefix)/opt/libpq/bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
 ### ------- Load NodeVersionManager (NVM) -----------------------
 export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+[ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$(brew --prefix)/opt/nvm/nvm.sh"
 
 # ### ---- Neovim Configuration Switcher --------------------------
 # function nvims() {
@@ -95,7 +95,6 @@ export NVM_DIR="$HOME/.nvm"
 
 ### ---- Add Poetry & libpq(psql) to PATH ----------------------
 export PATH="/usr/local/opt/libpq/bin:$PATH"
-export PATH="/Users/deorz/.local/bin:$PATH"
 
 ### ---- Load Utilities  -----------------------------------
 eval "$(zoxide init --cmd cd zsh)"
