@@ -10,10 +10,9 @@ keymap.set("i", "jk", "<Esc>", { desc = "Exit From Insert Mode" })
 vim.api.nvim_create_autocmd("TermOpen", {
 	pattern = "term://*",
 	callback = function()
-	if vim.bo.filetype == "lazygit" then
-		return
-	end
-		keymap.set("t", "jk", [[<C-\><C-n>]], { desc = "Exit From Terminal Mode" })
+		if vim.bo.filetype ~= "lazygit" then
+			keymap.set("t", "jk", [[<C-\><C-n>]], { desc = "Exit From Terminal Mode" })
+		end
 	end,
 })
 
