@@ -4,9 +4,11 @@ local config = wezterm.config_builder()
 
 local mux = wezterm.mux
 
+local opacity = 0.75
+
 config = {
 	color_scheme = "Tokyo Night",
-	window_background_opacity = 0.80,
+	window_background_opacity = opacity,
 	macos_window_background_blur = 0,
 	default_cursor_style = "SteadyBlock",
 	automatically_reload_config = true,
@@ -31,6 +33,21 @@ config = {
 		top = 4,
 		bottom = 4,
 	},
+	colors = {
+		tab_bar = {
+			background = "rgba(26 27 38 " .. opacity .. ")",
+			inactive_tab_edge = "rgba(22 22 30 " .. opacity .. ")",
+			active_tab = {
+				bg_color = "rgba(26 27 38 " .. opacity .. ")",
+				fg_color = "rgba(122 162 255 1.0)",
+			},
+			inactive_tab = {
+				fg_color = "rgba(84 92 126 1.0)",
+				bg_color = "rgba(26 27 38 " .. opacity .. ")",
+			},
+		},
+	},
+
 	leader = { key = "b", mods = "CTRL", timeout_milliseconds = 1000 },
 	keys = {
 		{ key = "LeftArrow", mods = "OPT", action = wezterm.action({ SendString = "\x1bb" }) },
