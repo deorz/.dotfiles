@@ -69,7 +69,7 @@ return {
 			{
 				"<leader>sb",
 				function()
-					require("fzf-lua").buffers()
+					require("fzf-lua").buffers({ sort_mru = true, sort_lastused = true })
 				end,
 				"n",
 				noremap = true,
