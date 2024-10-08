@@ -4,7 +4,9 @@ local config = wezterm.config_builder()
 
 local mux = wezterm.mux
 
-local opacity = 0.75
+local opacity = 0.9
+
+local smart_splits = wezterm.plugin.require('https://github.com/mrjones2014/smart-splits.nvim')
 
 config = {
 	color_scheme = "Tokyo Night",
@@ -22,6 +24,7 @@ config = {
 		stretch = "Normal",
 		style = "Normal",
 	}),
+    warn_about_missing_glyphs = false,
 	enable_tab_bar = true,
 	use_fancy_tab_bar = false,
 	show_new_tab_button_in_tab_bar = false,
@@ -47,9 +50,18 @@ config = {
 			},
 		},
 	},
-
+	disable_default_key_bindings = true,
 	leader = { key = "b", mods = "CTRL", timeout_milliseconds = 1000 },
 	keys = {
+		{ key = "q", mods = "SUPER", action = wezterm.action.QuitApplication },
+		{ key = "c", mods = "SUPER", action = wezterm.action({ CopyTo = "Clipboard" }) },
+		{ key = "v", mods = "SUPER", action = wezterm.action({ PasteFrom = "Clipboard" }) },
+		{ key = "n", mods = "SUPER", action = wezterm.action.SpawnWindow },
+		{ key = "w", mods = "SUPER", action = wezterm.action({ CloseCurrentTab = { confirm = true } }) },
+		{ key = "h", mods = "SUPER", action = wezterm.action.HideApplication },
+		{ key = "f", mods = "SUPER", action = wezterm.action({ Search = { CaseSensitiveString = "" } }) },
+		{ key = "p", mods = "SUPER|SHIFT", action = wezterm.action.ActivateCommandPalette },
+
 		{ key = "LeftArrow", mods = "OPT", action = wezterm.action({ SendString = "\x1bb" }) },
 		{ key = "RightArrow", mods = "OPT", action = wezterm.action({ SendString = "\x1bf" }) },
 		{ key = "LeftArrow", mods = "SUPER", action = wezterm.action({ SendString = "\x01" }) },
@@ -114,6 +126,18 @@ config = {
 		{ key = "9", mods = "LEADER", action = wezterm.action({ ActivateTab = 8 }) },
 	},
 }
+
+
+smart_splits.apply_to_config(config, {
+  direction_keys = {
+    move = { 'h', 'j', 'k', 'l' },
+    resize = { 'LeftArrow', 'DownArrow', 'UpArrow', 'RightArrow' },
+  },
+  modifiers = {
+    move = 'CTRL', -- modifier to use for pane movement, e.g. CTRL+h to move left
+    resize = 'CTRL', -- modifier to use for pane resize, e.g. META+h to resize to the left
+  },
+})
 
 local create_work_workspace = function()
 	local project_dir = wezterm.home_dir .. "/Work"
