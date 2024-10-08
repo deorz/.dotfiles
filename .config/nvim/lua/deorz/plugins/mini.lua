@@ -70,23 +70,6 @@ return {
 		end,
 	},
 	{
-		"echasnovski/mini.basics",
-		version = false,
-		opts = {
-			options = {
-				basic = false,
-				win_borders = "bold",
-			},
-			mappings = {
-				basic = false,
-				windows = true,
-			},
-			autocommands = {
-				relnum_in_visual_mode = true,
-			},
-		},
-	},
-	{
 		"echasnovski/mini.starter",
 		version = false,
 		opts = function()
