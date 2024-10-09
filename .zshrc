@@ -95,6 +95,7 @@ export NVM_DIR="$HOME/.nvm"
 
 ### ---- Add Poetry & libpq(psql) to PATH ----------------------
 export PATH="/usr/local/opt/libpq/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 ### ---- Load Utilities  -----------------------------------
 eval "$(zoxide init --cmd cd zsh)"
