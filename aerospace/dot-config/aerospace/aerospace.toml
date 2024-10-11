@@ -65,3 +65,36 @@ alt-shift-h = ['join-with left', 'mode main']
 alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
+
+# Float
+[[on-window-detected]]
+if.app-id = 'com.apple.systempreferences'
+run = ['layout floating', 'move-node-to-workspace Float']
+
+[[on-window-detected]]
+if.app-id = ''
+run = ['layout floating', 'move-node-to-workspace Float']
+
+# Dev
+[[on-window-detected]]
+if.app-id = 'com.github.wez.wezterm'
+run = 'move-node-to-workspace Dev'
+
+# Web
+[[on-window-detected]]
+if.app-id = 'company.thebrowser.Browser'
+run = 'move-node-to-workspace Web'
+
+# Social
+[[on-window-detected]]
+if.app-id = 'ru.keepcoder.Telegram'
+run = 'move-node-to-workspace Social'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.mail'
+run = 'move-node-to-workspace Social'
+
+# Ai
+[[on-window-detected]]
+if.app-id = 'jan.ai.app'
+run = 'move-node-to-workspace Ai'
