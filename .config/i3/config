@@ -1,0 +1,113 @@
+# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+
+set $Command Mod4
+set $Option Mod1
+
+font pango:Liga SFMono Nerd Font 10
+
+exec --no-startup-id dex --autostart --environment i3
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id nm-applet
+
+exec --no-startup-id xrandr --output HDMI-0 --scale 0.7833333x0.7833333
+
+exec --no-startup-id picom --config ~/.config/i3/themes/catppuccin/picom/picom.conf
+exec --no-startup-id ~/.config/i3/themes/catppuccin/polybar/launch_polybar.sh
+exec --no-startup-id feh --bg-scale ~/Downloads/backgrounds/arch.png
+exec --no-startup-id dunst -conf ~/.config/i3/themes/catppuccin/dunst/dunstrc
+
+# Use pactl to adjust volume in PulseAudio.
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $Command
+
+# move tiling windows via drag & drop by left-clicking into the title bar,
+# or left-clicking anywhere into the window while holding the floating modifier.
+tiling_drag modifier titlebar
+
+# start a terminal
+bindsym $Command+Return exec kitty
+
+# kill focused window
+bindsym $Command+q kill
+
+# start rofi (a program launcher)
+bindsym $Option+space exec --no-startup-id rofi -show drun -config ~/.config/i3/themes/catppuccin/rofi/menu.rasi -show-icons -drun-icon-theme oomox-Catppuccin-Macchiato
+
+# start flameshot
+bindsym $Command+Shift+4 exec --no-startup-id flameshot gui
+
+gaps inner 10px
+gaps outer 5px
+
+default_border pixel 0
+default_floating_border pixel 0
+for_window [class="^.*"] border pixel 1
+
+focus_follows_mouse no
+
+# change focus
+bindsym $Option+h focus left
+bindsym $Option+j focus down
+bindsym $Option+k focus up
+bindsym $Option+l focus right
+
+# move focused window
+bindsym $Option+Shift+h move left
+bindsym $Option+Shift+j move down
+bindsym $Option+Shift+k move up
+bindsym $Option+Shift+l move right
+
+bindsym $Option+slash layout toggle split
+bindsym $Option+comma layout stacking
+bindsym $Option+period layout tabbed
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "Ai"
+set $ws2 "Dev"
+set $ws3 "Float"
+set $ws4 "Notes"
+set $ws5 "Other"
+set $ws6 "Social"
+set $ws7 "Web"
+
+# switch to workspace
+bindsym $Option+a workspace $ws1
+bindsym $Option+d workspace $ws2
+bindsym $Option+f workspace $ws3
+bindsym $Option+n workspace $ws4
+bindsym $Option+o workspace $ws5
+bindsym $Option+s workspace $ws6
+bindsym $Option+w workspace $ws7
+
+# move focused container to workspace
+bindsym $Option+Shift+a move container to workspace $ws1
+bindsym $Option+Shift+d move container to workspace $ws2
+bindsym $Option+Shift+f move container to workspace $ws3
+bindsym $Option+Shift+n move container to workspace $ws4
+bindsym $Option+Shift+o move container to workspace $ws5
+bindsym $Option+Shift+s move container to workspace $ws6
+bindsym $Option+Shift+w move container to workspace $ws7
+
+# exit i3 (logs you out of your X session)
+bindsym $Command+Control+Escape exec i3-msg exit
+
+
+mode "service" {
+        # reload the configuration file
+        bindsym r reload
+        # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+        bindsym q restart
+        # Toggle floating
+        bindsym f floating toggle 
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Escape mode "default"
+}
+
+bindsym $Option+Shift+backslash mode "service"
