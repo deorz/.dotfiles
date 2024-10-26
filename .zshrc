@@ -1,3 +1,6 @@
+# Set PATH, MANPATH, etc., for Homebrew.
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
 ### ---------- ZSH-Plugins ---------------------------------
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
