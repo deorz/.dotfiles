@@ -101,3 +101,5 @@ export PATH="$HOME/.local/bin:$PATH"
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(fzf --zsh)"
 eval "$(starship init zsh)"
+
+neofetch
