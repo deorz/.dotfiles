@@ -6,7 +6,7 @@ local mux = wezterm.mux
 
 local opacity = 0.9
 
-local smart_splits = wezterm.plugin.require('https://github.com/mrjones2014/smart-splits.nvim')
+local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
 
 config = {
 	color_scheme = "Tokyo Night",
@@ -24,7 +24,7 @@ config = {
 		stretch = "Normal",
 		style = "Normal",
 	}),
-    warn_about_missing_glyphs = false,
+	warn_about_missing_glyphs = false,
 	enable_tab_bar = true,
 	use_fancy_tab_bar = false,
 	show_new_tab_button_in_tab_bar = false,
@@ -127,16 +127,15 @@ config = {
 	},
 }
 
-
 smart_splits.apply_to_config(config, {
-  direction_keys = {
-    move = { 'h', 'j', 'k', 'l' },
-    resize = { 'LeftArrow', 'DownArrow', 'UpArrow', 'RightArrow' },
-  },
-  modifiers = {
-    move = 'CTRL', -- modifier to use for pane movement, e.g. CTRL+h to move left
-    resize = 'CTRL', -- modifier to use for pane resize, e.g. META+h to resize to the left
-  },
+	direction_keys = {
+		move = { "h", "j", "k", "l" },
+		resize = { "LeftArrow", "DownArrow", "UpArrow", "RightArrow" },
+	},
+	modifiers = {
+		move = "CTRL", -- modifier to use for pane movement, e.g. CTRL+h to move left
+		resize = "CTRL", -- modifier to use for pane resize, e.g. META+h to resize to the left
+	},
 })
 
 local create_work_workspace = function()
