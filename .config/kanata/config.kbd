@@ -1,0 +1,48 @@
+(defsrc
+    caps 
+    lalt
+    lmet
+    lft
+    rght
+    q
+    ret
+    spc
+)
+
+(defalias
+    ;; Ctrl+C: send SIGINT to a Linux terminal program
+    sigint C-c
+    ;; Ctrl+Shift+(C|V): copy or paste from certain terminal programs
+    cpy C-S-c
+    pst C-S-v
+
+    cmdnav (multi lctrl (layer-while-held cmd-navigation))
+    linestart (multi (release-key lctrl) home)
+    lineend (multi (release-key lctrl) end)
+    cmd-q (multi (release-key lctrl) M-q)
+    cmd-ret (multi (release-key lctrl) M-ret)
+    cmd-spc (multi (release-key lctrl) M-spc)
+
+    optnav (multi alt (layer-while-held opt-navigation))
+    prev-word (multi (release-key alt) C-lft)
+    next-word (multi (release-key alt) C-rght)
+)
+
+(deflayermap (base)
+    caps lctrl
+    lalt @optnav
+    lmet @cmdnav
+)
+
+(deflayermap (cmd-navigation)
+    lft @linestart
+    rght @lineend
+    q @cmd-q
+    ret @cmd-ret
+    spc @cmd-spc
+)
+
+(deflayermap (opt-navigation)
+    lft @prev-word
+    rght @next-word
+)
