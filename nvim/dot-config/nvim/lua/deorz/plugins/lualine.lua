@@ -12,13 +12,9 @@ return {
 					return ""
 				end
 			end
-			local theme = require("lualine.themes.tokyonight")
-			theme.normal.c.bg = nil
-			theme.terminal["c"] = { bg = nil }
-			theme.inactive.c.bg = nil
 			return {
 				options = {
-					theme = theme,
+					theme = "catppuccin",
 					component_separators = { left = "|", right = "|" },
 					section_separators = { left = " ", right = " " },
 				},

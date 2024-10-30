@@ -13,6 +13,7 @@ return {
 		opts = {
 			timeout = 2000,
 			render = "wrapped-compact",
+			background_colour = "#000000",
 		},
 	},
 }

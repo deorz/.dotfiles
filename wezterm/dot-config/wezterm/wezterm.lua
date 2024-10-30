@@ -9,7 +9,7 @@ local opacity = 0.9
 local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
 
 config = {
-	color_scheme = "Tokyo Night",
+	color_scheme = "Catppuccin Mocha",
 	window_background_opacity = opacity,
 	macos_window_background_blur = 0,
 	default_cursor_style = "SteadyBlock",
@@ -19,7 +19,7 @@ config = {
 	window_decorations = "RESIZE",
 	check_for_updates = false,
 	font_size = 14,
-	font = wezterm.font("Liga SFMono Nerd Font", {
+	font = wezterm.font("JetBrainsMono Nerd Font", {
 		weight = "Bold",
 		stretch = "Normal",
 		style = "Normal",
@@ -38,16 +38,7 @@ config = {
 	},
 	colors = {
 		tab_bar = {
-			background = "rgba(26 27 38 " .. opacity .. ")",
-			inactive_tab_edge = "rgba(22 22 30 " .. opacity .. ")",
-			active_tab = {
-				bg_color = "rgba(26 27 38 " .. opacity .. ")",
-				fg_color = "rgba(122 162 255 1.0)",
-			},
-			inactive_tab = {
-				fg_color = "rgba(84 92 126 1.0)",
-				bg_color = "rgba(26 27 38 " .. opacity .. ")",
-			},
+			background = "rgba(30 30 46 " .. opacity .. ")",
 		},
 	},
 	disable_default_key_bindings = true,

@@ -6,3 +6,5 @@
 
 [includeIf "gitdir:~/Work/"]
     path = ~/Work/.gitconfig
+[core]
+	editor = nvim
