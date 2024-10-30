@@ -1,0 +1,44 @@
+(defsrc
+    esc
+    grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+    tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+    caps a    s    d    f    g    h    j    k    l    ;    '    ret
+    lsft z    x    c    v    b    n    m    ,    .    /    rsft      up
+    lctrl lmet lalt           spc                 rmet          lft down rght
+)
+
+(defalias
+	cec (tap-hold 100 100 esc lctrl) 
+    cmet (tap-hold 150 150 lmet (layer-while-held ctrl-meta))
+    oalt (tap-hold 150 150 lalt (layer-while-held opt-alt))
+    pword C-lft
+    nword C-rght
+    dword C-bspc
+)
+
+(deflayer base
+    esc
+    grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+    tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+    @cec a    s    d    f    g    h    j    k    l    ;    '    ret
+    lsft z    x    c    v    b    n    m    ,    .    /    rsft      up
+    lctrl @cmet @oalt         spc                 rmet          lft down rght
+)
+
+(deflayer ctrl-meta
+    M-esc
+    M-grv M-1 M-2 M-3  M-4  M-5  M-6  M-7  M-8  M-9  M-0  M--  M-=  M-bspc
+    M-tab M-q  C-w C-e  C-r  C-t  C-y  C-u  C-i  C-o  C-p  C-[  C-]  M-\
+     _    C-a  C-s C-d  C-f  C-g  C-h  C-j  C-k  C-l  M-;  M-'  M-ret
+     _    C-z  C-x C-c  C-v  C-b  C-n  C-m  M-,  M-.   M-/  _    M-up
+     _   _    _          M-spc              _             home  M-down  end
+)
+
+(deflayer opt-alt
+    A-esc
+    A-grv A-1 A-2 A-3  A-4  A-5  A-6  A-7  A-8  A-9  A-0  A--  A-=  @dword
+    A-tab A-q  A-w A-e  A-r  A-t  A-y  A-u  A-i  A-o  A-p  A-[  A-]  A-\
+     _    A-a  A-s A-d  A-f  A-g  A-h  A-j  A-k  A-l  A-;  A-'  A-ret
+     _    A-z  A-x A-c  A-v  A-b  A-n  A-m  A-,  A-.   A-/  _    A-up
+     _   _    _          A-spc              _           @pword  A-down  @nword
+)
