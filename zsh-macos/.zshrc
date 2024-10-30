@@ -38,10 +38,12 @@ zstyle ':fzf-tab:*' switch-group '<' '>'
 
 ### ------------------- Fzf Settings ------------------------------------
 # Setting theme for fzf
-FZF_DEFAULT_OPTS="\
-  --color=bg+:#313244,spinner:#f5e0dc,hl:#f38ba8 \
-  --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
-  --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#313244,spinner:#f5e0dc,hl:#f38ba8 \
+--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+--color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
+--color=selected-bg:#45475a \
+--multi"
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
@@ -70,8 +72,9 @@ alias htop="btm"
 alias find="fd"
 alias grep="rg"
 
-### ---- load Pyenv and libpq(psql) ---------
+### ---- load Pyenv, libpq(psql), Poetry ---------
 export PATH="$(brew --prefix)/opt/libpq/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
@@ -92,10 +95,6 @@ export NVM_DIR="$HOME/.nvm"
 #   fi
 #   NVIM_APPNAME=$config nvim $@
 # }
-
-### ---- Add Poetry & libpq(psql) to PATH ----------------------
-export PATH="/usr/local/opt/libpq/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
 
 ### ---- Load Utilities  -----------------------------------
 eval "$(zoxide init --cmd cd zsh)"
