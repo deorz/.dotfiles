@@ -9,7 +9,7 @@
 
 window#waybar {
 	border-radius: 20px;
-	background-color: transparent;
+	background-color: rgba(30, 30, 46, 0.8);
 }
 
 button {
@@ -25,23 +25,18 @@ button:hover {
 
 #custom-menu {
 	color: @blue;
-	background-color: @base;
-	padding: 2px 15px;
-	margin: 5px;
-    margin-right: 10px;
-	border-radius: 20px;
+	margin: 0px 10px;
+    padding-left: 10px;
 }
 
 #workspaces {
     color: @text;
-    background-color: @base;
-	padding: 2px 15px;
+	padding: 0px 15px;
 	margin: 5px;
-	border-radius: 20px;
 }
 
 #workspaces button {
-	padding: 2px 15px;
+	padding: 0px 15px;
 	color: @text;
 }
 
@@ -58,26 +53,20 @@ button:hover {
 	color: @red;
 }
 
-#window {
-	color: @text;
-	background-color: @base;
-	padding: 2px 15px;
-	margin: 5px;
-	border-radius: 20px;
+#clock {
+    color: @text;
 }
 
 box.modules-right {
 	color: @text;
-	background-color: @base;
-	border-radius: 20px;
+    padding-right: 15px;
 }
 
 #tray,
 #language,
 #pulseaudio,
-#clock,
 #custom-power {
-	padding: 0px 15px;
+	padding: 0px 10px;
 }
 
 #pulseaudio.muted {
@@ -86,12 +75,4 @@ box.modules-right {
 
 #custom-power:hover {
 	color: @red;
-}
-
-tooltip {
-	background: @base;
-	margin: 20px;
-	padding: 15px;
-	border: 20px solid transparent;
-	border-radius: 10px;
 }

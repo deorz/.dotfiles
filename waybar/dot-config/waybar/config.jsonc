@@ -8,32 +8,27 @@
         "hyprland/workspaces"
     ],
     "modules-center": [
-        "hyprland/window"
+        "clock"
     ],
     "modules-right": [
         "tray",
         "hyprland/language",
         "pulseaudio",
-        "clock",
         "custom/power"
     ],
     "custom/menu": {
         "format": "{icon}",
         "format-icons": "󰣇",
-        "on-click": "rofi -show drun -theme ~/.config/rofi/launcher/style.rasi",
         "escape": true,
         "tooltip": false
     },
     "hyprland/workspaces": {
         "format": "{icon}",
         "format-icons": {
-            "1": "Ai",
-            "2": "Dev",
-            "3": "Float",
-            "4": "Notes",
-            "5": "Other",
-            "6": "Social",
-            "7": "Web"
+            "1": "󰭹",
+            "2": "",
+            "3": "",
+            "4": ""
         },
         "all-outputs": true,
         "persistent-workspaces": {
@@ -41,31 +36,24 @@
                 1,
                 2,
                 3,
-                4,
-                5,
-                6,
-                7
+                4
             ]
         },
         "tooltip": false
-    },
-    "hyprland/window": {
-        "format": "{class}",
-        "separate-outputs": false
     },
     "tray": {
         "icon-size": 18,
         "spacing": 10
     },
     "hyprland/language": {
-        "format": "󰌌 {}",
+        "format": "{}",
         "format-en": "EN",
         "format-ru": "RU"
     },
     "pulseaudio": {
         "scroll-step": 5,
-        "format": "{icon} {volume}%",
-        "format-muted": "  0%",
+        "format": "{icon}  {volume}%",
+        "format-muted": " ",
         "format-icons": {
             "default": [
                 "",
@@ -77,33 +65,13 @@
         "tooltip": false
     },
     "clock": {
-        "format": "{:%A %b %d %H:%M}",
-        "tooltip-format": "<big><span color='#cdd6f4'>{:%Y %B}</span></big>\n<tt><small>{calendar}</small></tt>",
-        "calendar": {
-            "mode": "month",
-            "mode-mon-col": 3,
-            "weeks-pos": "right",
-            "on-scroll": 1,
-            "format": {
-                "months": "<span color='#cdd6f4'><b>{}</b></span>",
-                "days": "<span color='#cdd6f4'><b>{}</b></span>",
-                "weeks": "<span color='#f5c2e7'><b>W{}</b></span>",
-                "weekdays": "<span color='#f5c2e7'><b>{}</b></span>",
-                "today": "<span color='#eba0ac'><b><u>{}</u></b></span>"
-            }
-        },
-        "actions": {
-            "on-click-right": "mode",
-            "on-click-forward": "tz_up",
-            "on-click-backward": "tz_down",
-            "on-scroll-up": "shift_up",
-            "on-scroll-down": "shift_down"
-        }
+        "format": "{:%a %b %d %H:%M}",
+        "tooltip": false
     },
     "custom/power": {
         "format": "{icon}",
         "format-icons": "",
-        "on-click": "~/.config/rofi/powermenu/powermenu.sh",
+        "on-click": "wlogout --buttons-per-row 2",
         "escape": true,
         "tooltip": false
     }
