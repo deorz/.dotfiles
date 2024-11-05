@@ -68,7 +68,7 @@ setopt hist_ignore_space       # Ignores all commands starting with a blank spac
 ### ---- Aliases Configuration -----------------------------------
 alias ls="lsd"
 alias zi="cdi"
-alias htop="btm"
+alias htop="btop"
 alias find="fd"
 alias grep="rg"
 
@@ -101,4 +101,4 @@ eval "$(zoxide init --cmd cd zsh)"
 eval "$(fzf --zsh)"
 eval "$(starship init zsh)"
 
-neofetch
+fastfetch
