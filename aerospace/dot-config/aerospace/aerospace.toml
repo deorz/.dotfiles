@@ -1,12 +1,12 @@
 after-startup-command = ['exec-and-forget brew services run borders']
 
 [gaps]
-inner.horizontal = 10
-inner.vertical =   10
-outer.left =       10
-outer.bottom =     10
-outer.top =        10
-outer.right =      10
+inner.horizontal = 15
+inner.vertical =   15
+outer.left =       15
+outer.bottom =     15
+outer.top =        15
+outer.right =      15
 
 [mode.main.binding]
 # All possible keys:
@@ -21,6 +21,7 @@ outer.right =      10
 # - Arrows.         left, down, up, right
 
 # All possible modifiers: cmd, alt, ctrl, shift
+cmd-enter = 'exec-and-forget open -a wezterm'
 
 alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
