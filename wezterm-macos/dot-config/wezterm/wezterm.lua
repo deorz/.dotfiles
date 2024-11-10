@@ -4,7 +4,7 @@ local config = wezterm.config_builder()
 
 local mux = wezterm.mux
 
-local opacity = 0.9
+local opacity = 1
 
 local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
 
