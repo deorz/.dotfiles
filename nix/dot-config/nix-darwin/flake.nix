@@ -5,12 +5,12 @@
         nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
         nix-darwin.url = "github:LnL7/nix-darwin";
         nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-        # nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+        nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
     };
 
-    outputs = inputs@{ self, nix-darwin, nixpkgs }:
+    outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew }:
         let
-            configuration = { pkgs, ... }: {
+            configuration = { pkgs, config, ... }: {
                 # List packages installed in system profile. To search by name, run:
                 # $ nix-env -qaP | grep wget
                 environment.systemPackages =
@@ -33,15 +33,32 @@
                         pkgs.jankyborders
                         pkgs.kubelogin-oidc
                         pkgs.go
+                        pkgs.poetry
+                        pkgs.pyenv
                     ];
 
-		# homebrew = {
-		# 	enable = true;
-		# 	casks = [
-		# 		"aerospace"
-		# 		"wezterm"
-		# 	];
-		# };
+                homebrew = {
+                    enable = true;
+                    brews = [
+                        "zsh-syntax-highlighting"
+                        "zsh-autosuggestions"
+                        "nvm"
+                        "mas"
+                    ];
+                    casks = [
+                        "wezterm"
+                        "font-jetbrains-mono-nerd-font"
+                        "telegram-desktop"
+                        "tunnelblick"
+                    ];
+                    masApps = {
+                        "AmneziaWG" = 6478942365;
+                    };
+                    onActivation.cleanup = "zap";
+                    onActivation.autoUpdate = true;
+                    onActivation.upgrade = true;
+                };
+
                 # Auto upgrade nix package and the daemon service.
                 services.nix-daemon.enable = true;
                 # nix.package = pkgs.nix;
@@ -69,15 +86,15 @@
             darwinConfigurations."Deniss-MacBook-Air" = nix-darwin.lib.darwinSystem {
                 modules = [
                     configuration 
-                    # nix-homebrew.darwinModules.nix-homebrew
-                    # {
-                    #     nix-homebrew = {
-                    #         enable = true;
-                    #         enableRosetta = true;
-                    #         user = "deorz";
-                    #         autoMigrate = true;
-                    #     };
-                    # }
+                    nix-homebrew.darwinModules.nix-homebrew
+                    {
+                        nix-homebrew = {
+                            enable = true;
+                            enableRosetta = true;
+                            user = "deorz";
+                            autoMigrate = true;
+                        };
+                    }
                 ];
             };
 
