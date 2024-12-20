@@ -11,12 +11,12 @@ local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smar
 config = {
 	color_scheme = "Catppuccin Mocha",
 	window_background_opacity = opacity,
-	macos_window_background_blur = 0,
+	macos_window_background_blur = 100,
 	default_cursor_style = "SteadyBlock",
 	automatically_reload_config = true,
 	window_close_confirmation = "NeverPrompt",
 	adjust_window_size_when_changing_font_size = false,
-	window_decorations = "RESIZE",
+	window_decorations = "RESIZE|MACOS_FORCE_DISABLE_SHADOW",
 	check_for_updates = false,
 	font_size = 14,
 	font = wezterm.font("JetBrainsMono Nerd Font", {
@@ -35,11 +35,6 @@ config = {
 		right = 4,
 		top = 4,
 		bottom = 4,
-	},
-	colors = {
-		tab_bar = {
-			background = "rgba(30 30 46 " .. opacity .. ")",
-		},
 	},
 	disable_default_key_bindings = true,
 	leader = { key = "b", mods = "CTRL", timeout_milliseconds = 1000 },
@@ -72,7 +67,7 @@ config = {
 			mods = "LEADER",
 			action = wezterm.action.PromptInputLine({
 				description = "Enter new name for tab",
-				action = wezterm.action_callback(function(window, pane, line)
+				action = wezterm.action_callback(function(window, _, line)
 					if line then
 						window:active_tab():set_title(line)
 					end
@@ -89,7 +84,7 @@ config = {
 			mods = "LEADER|SHIFT",
 			action = wezterm.action.PromptInputLine({
 				description = "Enter new name for session",
-				action = wezterm.action_callback(function(window, pane, line)
+				action = wezterm.action_callback(function(window, _, line)
 					if line then
 						mux.rename_workspace(window:mux_window():get_workspace(), line)
 					end
@@ -129,37 +124,32 @@ smart_splits.apply_to_config(config, {
 	},
 })
 
-local create_work_workspace = function()
-	local project_dir = wezterm.home_dir .. "/Work"
-	local tab, _, window = mux.spawn_window({
-		cwd = project_dir,
-		workspace = "Work",
-	})
-	tab:set_title("Code")
-	for _, name in ipairs({ "Docker", "Other", "Kubernetes", "Files" }) do
-		local tab, _, _ = window:spawn_tab({})
-		tab:set_title(name)
-	end
-end
-
-local create_dotfiles_workspace = function()
-	local project_dir = wezterm.home_dir .. "/.dotfiles"
-	local tab, _, window = mux.spawn_window({
-		cwd = project_dir,
+wezterm.on("gui-startup", function(_)
+	local dotfiles_dir = wezterm.home_dir .. "/.dotfiles"
+	local tab, _, dot_window = mux.spawn_window({
 		workspace = "Dotfiles",
+		cwd = dotfiles_dir,
 	})
 	tab:set_title("Dotfiles")
+
 	for _, name in ipairs({ "Neovim" }) do
-		local tab, _, _ = window:spawn_tab({})
+		local tab, _, _ = dot_window:spawn_tab({})
 		tab:set_title(name)
 	end
-end
 
-wezterm.on("gui-startup", function(cmd)
-	create_work_workspace()
-	create_dotfiles_workspace()
+	local work_dir = wezterm.home_dir .. "/Work"
+	local tab, _, work_window = mux.spawn_window({
+		workspace = "Work",
+		cwd = work_dir,
+	})
+	tab:set_title("Code")
 
-	mux.spawn_window(cmd or {})
+	for _, name in ipairs({ "Docker", "Other", "Kubernetes", "Files" }) do
+		local tab, _, _ = work_window:spawn_tab({})
+		tab:set_title(name)
+	end
+
+	mux.set_active_workspace("Dotfiles")
 end)
 
 return config
