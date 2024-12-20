@@ -1,0 +1,38 @@
+[[language]]
+name = "python"
+scope = "source.python"
+language-servers = ["pyright", "ruff"]
+
+[language.formatter]
+command = "ruff format"
+
+[language-server.pyright]
+command = "pyright-langserver"
+args = ["--stdio"]
+
+[language-server.pyright.config]
+reportMissingTypeStubs = false
+disableOrganizeImports = true
+
+[language-server.pyright.config.python.analysis]
+typeCheckingMode = "standard"
+
+[language-server.ruff]
+command = "ruff"
+args = ["server"]
+environment = { "RUFF_TRACE" = "messages" }
+
+[language-server.ruff.config.settings]
+logLevel = "debug"
+
+[language.debugger]
+name = "debugpy"
+transport = "stdio"
+command = "python"
+args = ["-m",  "debugpy.adapter"]
+
+[[language.debugger.templates]]
+name = "source"
+request = "launch"
+completion = [ { name = "entrypoint", completion = "filename", default = "." } ]
+args = { mode = "debug", program = "{0}" }
