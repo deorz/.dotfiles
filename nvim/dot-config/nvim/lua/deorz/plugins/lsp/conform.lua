@@ -1,20 +1,23 @@
 return {
 	{
 		"stevearc/conform.nvim",
-		event = { "BufReadPre", "BufNewFile" },
+		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+		dependencies = { "mason.nvim" },
+		lazy = true,
 		cmd = "ConformInfo",
 		opts = {
 			formatters_by_ft = {
 				yaml = { "yamlfix" },
 				lua = { "stylua" },
-				swift = { "swiftlint" },
 				toml = { "taplo" },
 				python = { "ruff_format" },
-				javascript = { "prettier", "eslint_d", stop_after_first = true },
-				typescript = { "prettier", "eslint_d", stop_after_first = true },
 				go = { "goimports", "gofumpt" },
 			},
 			format_after_save = nil,
+		},
+		keys = {
+            -- stylua: ignore
+			{"<leader>cf", function() require("conform").format({ lsp_format = "fallback", async = true }) end, mode={ "n", "v" }, noremap = true, silent = true, desc = "Format file"},
 		},
 	},
 }

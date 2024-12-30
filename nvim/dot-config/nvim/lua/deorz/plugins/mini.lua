@@ -2,6 +2,7 @@ return {
 	{
 		"echasnovski/mini.clue",
 		version = false,
+		event = "VeryLazy",
 		config = function()
 			local miniclue = require("mini.clue")
 			local opts = {
@@ -42,14 +43,13 @@ return {
 				},
 				clues = {
 					{ mode = "n", keys = "<Leader>b", desc = "Buffer" },
-					{ mode = "n", keys = "<Leader>e", desc = "Explorer" },
-					{ mode = "n", keys = "<Leader>s", desc = "Search" },
-					{ mode = "n", keys = "<Leader>d", desc = "Debug" },
-					{ mode = "n", keys = "<Leader>l", desc = "Lazy" },
-					{ mode = "n", keys = "<Leader>g", desc = "Git" },
 					{ mode = "n", keys = "<Leader>c", desc = "Code" },
-					{ mode = "n", keys = "<Leader>t", desc = "Tests" },
-					{ mode = "n", keys = "<Leader>u", desc = "Utilities" },
+					{ mode = "n", keys = "<Leader>d", desc = "Debug" },
+					{ mode = "n", keys = "<Leader>e", desc = "Explorer" },
+					{ mode = "n", keys = "<Leader>g", desc = "Git" },
+					{ mode = "n", keys = "<Leader>n", desc = "Notifications" },
+					{ mode = "n", keys = "<Leader>s", desc = "Search" },
+					{ mode = "n", keys = "<Leader>t", desc = "Terminal" },
 					miniclue.gen_clues.builtin_completion(),
 					miniclue.gen_clues.g(),
 					miniclue.gen_clues.marks(),
@@ -65,37 +65,7 @@ return {
 					},
 				},
 			}
-
 			miniclue.setup(opts)
-		end,
-	},
-	{
-		"echasnovski/mini.starter",
-		version = false,
-		opts = function()
-			local starter = require("mini.starter")
-			return {
-				autoopen = true,
-				header = function()
-					return table.concat({
-						[[                                  __]],
-						[[     ___     ___    ___   __  __ /\_\    ___ ___]],
-						[[    / _ `\  / __`\ / __`\/\ \/\ \\/\ \  / __` __`\]],
-						[[   /\ \/\ \/\  __//\ \_\ \ \ \_/ |\ \ \/\ \/\ \/\ \]],
-						[[   \ \_\ \_\ \____\ \____/\ \___/  \ \_\ \_\ \_\ \_\]],
-						[[    \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
-					}, "\n")
-				end,
-				items = {
-					starter.sections.pick(),
-					starter.sections.recent_files(5, true, true),
-				},
-				content_hooks = {
-					starter.gen_hook.adding_bullet(),
-					starter.gen_hook.aligning("center", "center"),
-				},
-				footer = "",
-			}
 		end,
 	},
 	{
@@ -106,8 +76,8 @@ return {
 		},
 		opts = {
 			windows = {
-				preview = true,
-				width_preview = 100,
+				max_number = 1,
+				preview = false,
 			},
 		},
 		keys = {
@@ -134,6 +104,7 @@ return {
 	},
 	{
 		"echasnovski/mini.hipatterns",
+		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 		version = false,
 		opts = {
 			highlighters = {
@@ -144,6 +115,7 @@ return {
 	},
 	{
 		"echasnovski/mini.surround",
+		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 		version = false,
 		opts = {
 			mappings = {
@@ -158,116 +130,43 @@ return {
 		},
 	},
 	{
-		"echasnovski/mini.indentscope",
-		version = false,
-		opts = {
-			symbol = "│",
-		},
-	},
-	{
 		"echasnovski/mini.pairs",
-		event = "VeryLazy",
+		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 		version = false,
 		opts = {},
-	},
-	{
-		"echasnovski/mini.ai",
-		event = "VeryLazy",
-		opts = function()
-			local ai = require("mini.ai")
-			return {
-				n_lines = 500,
-				custom_textobjects = {
-					o = ai.gen_spec.treesitter({
-						a = { "@block.outer", "@conditional.outer", "@loop.outer" },
-						i = { "@block.inner", "@conditional.inner", "@loop.inner" },
-					}, {}),
-					f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }, {}),
-					c = ai.gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }, {}),
-				},
-			}
-		end,
-	},
-	{
-		"echasnovski/mini.jump2d",
-		version = false,
-		opts = {
-			labels = "abcdefghijklnqrstuvwy",
-			allowed_lines = {
-				blank = false,
-			},
-			mappings = {
-				start_jumping = "s",
-			},
-		},
-	},
-	{
-		"echasnovski/mini.jump",
-		version = false,
-		opts = {
-			delay = {
-				idle_stop = 2000,
-			},
-		},
 	},
 	{
 		"echasnovski/mini.icons",
 		version = false,
-		opts = {},
+		lazy = false,
 		config = function(_, opts)
 			local mini_icons = require("mini.icons")
 			mini_icons.setup(opts)
 			mini_icons.mock_nvim_web_devicons()
+			mini_icons.tweak_lsp_kind()
 		end,
 	},
 	{
-		"echasnovski/mini.bufremove",
-		version = false,
-		opts = {},
-		keys = {
-			{
-				"<leader>bx",
-				function()
-					require("mini.bufremove").wipeout()
-				end,
-				"n",
-				noremap = true,
-				silent = true,
-				desc = "Delete Buffer",
-			},
-			{
-				"<leader>bw",
-				"<cmd>%bd|e#<cr>",
-				"n",
-				noremap = true,
-				silent = true,
-				desc = "Close Other Buffers",
-			},
-		},
-	},
-	{
 		"echasnovski/mini.comment",
-		event = "VeryLazy",
-		version = false,
-		opts = {},
-	},
-	{
-		"echasnovski/mini.bracketed",
-		version = false,
-		opts = {},
-	},
-	{
-		"echasnovski/mini.cursorword",
+		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 		version = false,
 		opts = {},
 	},
 	{
 		"echasnovski/mini.splitjoin",
+		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 		version = false,
 		opts = {},
 	},
 	{
 		"echasnovski/mini.diff",
+		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+		version = false,
+		opts = {},
+	},
+	{
+		"echasnovski/mini.jump",
+		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 		version = false,
 		opts = {},
 	},

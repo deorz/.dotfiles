@@ -1,13 +1,10 @@
 return {
 	{
 		"mfussenegger/nvim-dap",
+		lazy = true,
 		dependencies = {
-			"rcarriga/nvim-dap-ui",
 			"mfussenegger/nvim-dap-python",
-			{
-				"theHamsta/nvim-dap-virtual-text",
-				opts = {},
-			},
+			"rcarriga/nvim-dap-ui",
 		},
 		config = function()
 			vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
@@ -27,53 +24,21 @@ return {
 			end
 		end,
 		keys = {
-			{
-				"<leader>dr",
-				function()
-					require("dap").continue()
-				end,
-				desc = "Run / Continue",
-			},
-			{
-				"<leader>dt",
-				function()
-					require("dap").terminate()
-				end,
-				desc = "Terminate",
-			},
-			{
-				"<leader>db",
-				function()
-					require("dap").toggle_breakpoint()
-				end,
-				desc = "Toggle Breakpoint",
-			},
-			{
-				"<leader>dB",
-				function()
-					require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
-				end,
-				desc = "Breakpoint Condition",
-			},
-			{
-				"<leader>dso",
-				function()
-					require("dap").step_over()
-				end,
-				desc = "Step Over",
-			},
-			{
-				"<leader>dsi",
-				function()
-					require("dap").step_into()
-				end,
-				desc = "Step Into",
-			},
+            -- stylua: ignore start
+			{"<leader>dr", function() require("dap").continue() end, desc = "Run / Continue",},
+			{"<leader>dt", function() require("dap").terminate() end, desc = "Terminate",},
+			{"<leader>db", function() require("dap").toggle_breakpoint() end, desc = "Toggle Breakpoint",},
+			{"<leader>dB", function() require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: ")) end, desc = "Breakpoint Condition",},
+			{"<F8>", function() require("dap").step_over() end, desc = "Step Over",},
+			{"<F7>", function() require("dap").step_into() end, desc = "Step Into",},
+			-- stylua: ignore end
 		},
 	},
 	{
 		"rcarriga/nvim-dap-ui",
-		dependencies = { "nvim-neotest/nvim-nio" },
+		dependencies = {
+			"nvim-neotest/nvim-nio",
+		},
 		keys = {
 			{
 				"<leader>du",
@@ -89,15 +54,11 @@ return {
 					elements = {
 						{
 							id = "repl",
-							size = 0.3,
+							size = 0.5,
 						},
 						{
 							id = "scopes",
-							size = 0.3,
-						},
-						{
-							id = "watches",
-							size = 0.3,
+							size = 0.5,
 						},
 					},
 					position = "bottom",
@@ -112,39 +73,14 @@ return {
 			dap.listeners.after.event_initialized["dapui_config"] = function()
 				dapui.open({})
 			end
-			dap.listeners.before.event_terminated["dapui_config"] = function()
-				dapui.close({})
-			end
-			dap.listeners.before.event_exited["dapui_config"] = function()
-				dapui.close({})
-			end
 		end,
 	},
 	{
 		"mfussenegger/nvim-dap-python",
+		lazy = true,
 		config = function()
 			local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
 			require("dap-python").setup(path)
-			require("dap").configurations.python = {
-				{
-					type = "python",
-					request = "launch",
-					name = "Run File",
-					program = "${file}",
-					cwd = "${workspaceFolder}",
-				},
-				{
-					type = "python",
-					request = "launch",
-					name = "Run file with arguments",
-					program = "${file}",
-					cwd = "${workspaceFolder}",
-					args = function()
-						local args_string = vim.fn.input("Arguments: ")
-						return vim.split(args_string, " +")
-					end,
-				},
-			}
 		end,
 	},
 }

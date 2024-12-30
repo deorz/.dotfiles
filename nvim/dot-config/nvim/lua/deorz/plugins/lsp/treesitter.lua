@@ -2,7 +2,7 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		version = false,
-		event = { "BufReadPre", "BufNewFile" },
+		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 		cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
 		build = ":TSUpdate",
 		opts = {
@@ -42,22 +42,9 @@ return {
 					end
 				end,
 			},
-			incremental_selection = { enable = true },
-			textobjects = {
-				select = {
-					enable = true,
-					lookahead = true,
-				},
-			},
 		},
 		config = function(_, opts)
 			require("nvim-treesitter.configs").setup(opts)
 		end,
-	},
-	{
-		"nvim-treesitter/nvim-treesitter-textobjects",
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-		},
 	},
 }

@@ -1,72 +1,67 @@
 return {
 	{
 		"williamboman/mason-lspconfig.nvim",
+		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 		dependencies = {
 			"williamboman/mason.nvim",
-			"hrsh7th/nvim-cmp",
-			"hrsh7th/cmp-nvim-lsp",
 			"neovim/nvim-lspconfig",
 			"folke/lazydev.nvim",
+			"saghen/blink.cmp",
+			"ibhagwan/fzf-lua",
 		},
 		opts = {
 			ensure_installed = {
 				"bashls",
-				"eslint",
 				"docker_compose_language_service",
 				"dockerls",
 				"gopls",
 				"jsonls",
-                "html",
 				"lua_ls",
-				"markdown_oxide",
 				"pyright",
-				"rust_analyzer",
-				"sqlls",
 				"yamlls",
 			},
 		},
 		config = function(_, opts)
 			require("mason-lspconfig").setup(opts)
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")
+			local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-			local signs = {
-				Error = " ",
-				Warn = " ",
-				Hint = " ",
-				Info = " ",
+			local diagnostics = {
+				underline = true,
+				update_in_insert = false,
+				virtual_text = {
+					spacing = 4,
+					source = "if_many",
+					prefix = "●",
+				},
+				severity_sort = true,
+				signs = {
+					text = {
+						[vim.diagnostic.severity.ERROR] = " ",
+						[vim.diagnostic.severity.WARN] = " ",
+						[vim.diagnostic.severity.HINT] = " ",
+						[vim.diagnostic.severity.INFO] = " ",
+					},
+				},
 			}
-			for type, icon in pairs(signs) do
-				local hl = "DiagnosticSign" .. type
-				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-			end
+			vim.diagnostic.config(diagnostics)
 
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 				callback = function(ev)
-                    local fzf_lua = require("fzf-lua")
+                    local fzf = require("fzf-lua")
 					local opts = { buffer = ev.buf, noremap = true, silent = true }
 					local buf = vim.lsp.buf
 					local keymap = vim.keymap
 
 					opts.desc = "Go To Definition"
 					keymap.set("n", "gd", function()
-                        fzf_lua.lsp_definitions()
-					end, opts)
-
-					opts.desc = "Go To Declaration"
-					keymap.set("n", "gD", function()
-                        fzf_lua.lsp_declarations()
-					end, opts)
-
-					opts.desc = "Go To Implementation"
-					keymap.set("n", "gi", function()
-                        fzf_lua.lsp_implementations()
+                        fzf.lsp_definitions()
 					end, opts)
 
 					opts.desc = "Go To References"
 					keymap.set("n", "gr", function()
-                        fzf_lua.lsp_references()
+						fzf.lsp_references()
 					end, opts)
 
 					opts.desc = "Rename"
@@ -74,11 +69,6 @@ return {
 
 					opts.desc = "Code Actions"
 					keymap.set({ "n", "v" }, "<leader>ca", buf.code_action, opts)
-
-					opts.desc = "Diagnostics"
-					keymap.set("n", "<leader>cd", function()
-                        fzf_lua.diagnostics_document()
-					end, opts)
 				end,
 			})
 
@@ -110,7 +100,6 @@ return {
 							pyright = { disableOrganizeImports = true },
 							python = {
 								analysis = {
-									ignore = { "*" },
 									typeCheckingMode = "basic",
 								},
 							},
