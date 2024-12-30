@@ -30,11 +30,12 @@
                         pkgs.stow
                         pkgs.uv
                         pkgs.zoxide
-                        pkgs.jankyborders
                         pkgs.kubelogin-oidc
                         pkgs.go
                         pkgs.poetry
                         pkgs.pyenv
+                        pkgs.tmux
+                        pkgs.tmuxinator
                     ];
 
                 homebrew = {
@@ -43,20 +44,50 @@
                         "zsh-syntax-highlighting"
                         "zsh-autosuggestions"
                         "nvm"
-                        "mas"
+
+                        # Only for building Pillow...
+                        "libjpeg"
+                        "zlib"
                     ];
                     casks = [
-                        "wezterm"
+                        "alacritty"
                         "font-jetbrains-mono-nerd-font"
                         "telegram-desktop"
                         "tunnelblick"
+                        "orbstack"
+                        "mos"
+                        "qbittorrent"
+                        "balenaetcher"
                     ];
                     masApps = {
-                        "AmneziaWG" = 6478942365;
+                        "Numbers" = 409203825;
+                        "Pages" = 409201541;
                     };
                     onActivation.cleanup = "zap";
                     onActivation.autoUpdate = true;
                     onActivation.upgrade = true;
+                };
+
+                system.defaults = {
+                    NSGlobalDomain.KeyRepeat = 2;
+                    spaces.spans-displays = false;
+                    finder.ShowStatusBar = true;
+                    finder.ShowPathbar = true;
+                    finder.CreateDesktop = false;
+                    dock.autohide  = true;
+                    dock.show-recents = false;
+                    dock.tilesize = 48;
+                    # dock.expose-group-by-app = true;
+                    dock.mru-spaces = false;
+                    dock.persistent-apps = [
+                        "/Applications/Arc.app"
+                        # "/Applications/WezTerm.app"
+                        "/System/Applications/Mail.app"
+                        "/System/Applications/Calendar.app"
+                        "/System/Applications/Messages.app"
+                        "/System/Applications/FaceTime.app"
+                        "/System/Applications/System Settings.app"
+                    ];
                 };
 
                 # Auto upgrade nix package and the daemon service.
