@@ -1,0 +1,13 @@
+# /Users/deorz/.config/tmuxinator/Dotfiles.yml
+
+name: Dotfiles
+root: ~/.dotfiles
+
+windows:
+  - Dotfiles:
+      panes:
+  - Neovim:
+      root: ~/.dotfiles/nvim
+      panes:
+  - Other:
+      panes:
