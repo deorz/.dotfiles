@@ -1,0 +1,58 @@
+[general]
+import = [
+    "~/.config/alacritty/rose-pine-moon.toml"
+]
+
+[window]
+padding.x = 15
+padding.y = 15
+decorations = "buttonless"
+
+[font]
+size = 14
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+style = "Regular"
+
+[font.bold]
+family = "JetBrainsMono Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "JetBrainsMono Nerd Font"
+style = "Italic"
+
+[font.bold_italic]
+family = "JetBrainsMono Nerd Font"
+style = "Bold Italic"
+
+[[keyboard.bindings]]
+chars = "\u001bb"
+key = "Left"
+mods = "Option"
+
+[[keyboard.bindings]]
+chars = "\u001bf"
+key = "Right"
+mods = "Option"
+
+[[keyboard.bindings]]
+chars = "\u0001"
+key = "Left"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0005"
+key = "Right"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0015"
+key = "Backspace"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u001f"
+key = "z"
+mods = "Command"
