@@ -1,0 +1,7 @@
+name: dotfiles
+path: ~/.dotfiles
+windows:
+- name: Dotfiles
+- name: Editor
+- name: Other
+
