@@ -6,7 +6,7 @@ return {
 		opts = {
 			completion = {
 				accept = { auto_brackets = { enabled = false } },
-				list = { selection = "auto_insert" },
+				list = { selection = { preselect = false, auto_insert = true } },
 			},
 			signature = { enabled = true },
 			keymap = {
