@@ -170,4 +170,22 @@ return {
 		version = false,
 		opts = {},
 	},
+	{
+		"echasnovski/mini.ai",
+		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+		version = false,
+		opts = {},
+	},
+	{
+		"echasnovski/mini.bracketed",
+		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+		version = false,
+		opts = {},
+	},
+	{
+		"echasnovski/mini.jump2d",
+		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+		version = false,
+		opts = {},
+	},
 }
