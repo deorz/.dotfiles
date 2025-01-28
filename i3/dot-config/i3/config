@@ -3,18 +3,21 @@
 set $Command Mod4
 set $Option Mod1
 
-font pango:Liga SFMono Nerd Font 10
+font pango:JetBrainsMonoNL Nerd Font 10
 
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+# exec --no-startup-id xrandr --output HDMI-0 --scale 0.7833333x0.7833333
+
+# exec --no-startup-id picom --config ~/.config/i3/themes/catppuccin/picom/picom.conf
+# exec --no-startup-id ~/.config/i3/themes/catppuccin/polybar/launch_polybar.sh
+exec --no-startup-id feh --bg-scale "~/Downloads/backgrounds/Foggy Forest by Tobias Reich_1.jpg"
 exec --no-startup-id nm-applet
-
-exec --no-startup-id xrandr --output HDMI-0 --scale 0.7833333x0.7833333
-
-exec --no-startup-id picom --config ~/.config/i3/themes/catppuccin/picom/picom.conf
-exec --no-startup-id ~/.config/i3/themes/catppuccin/polybar/launch_polybar.sh
-exec --no-startup-id feh --bg-scale ~/Downloads/backgrounds/arch.png
-exec --no-startup-id dunst -conf ~/.config/i3/themes/catppuccin/dunst/dunstrc
+exec --no-startup-id dunst
+exec --no-startup-id blueman-applet
+exec --no-startup-id gnome-keyring-daemon --start
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
