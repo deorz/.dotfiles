@@ -9,23 +9,23 @@ padding.y = 15
 decorations = "buttonless"
 
 [font]
-size = 14
+size = 12
 
 [font.normal]
 family = "JetBrainsMono Nerd Font"
-style = "Regular"
+style = "Bold"
 
 [font.bold]
 family = "JetBrainsMono Nerd Font"
-style = "Bold"
+style = "ExtraBold"
 
 [font.italic]
 family = "JetBrainsMono Nerd Font"
-style = "Italic"
+style = "Bold Italic"
 
 [font.bold_italic]
 family = "JetBrainsMono Nerd Font"
-style = "Bold Italic"
+style = "ExtraBold Italic"
 
 [[keyboard.bindings]]
 chars = "\u001bb"
