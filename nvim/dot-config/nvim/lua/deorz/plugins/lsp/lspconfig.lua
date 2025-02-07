@@ -7,7 +7,6 @@ return {
 			"neovim/nvim-lspconfig",
 			"folke/lazydev.nvim",
 			"saghen/blink.cmp",
-			"ibhagwan/fzf-lua",
 		},
 		opts = {
 			ensure_installed = {
@@ -49,19 +48,24 @@ return {
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 				callback = function(ev)
-                    local fzf = require("fzf-lua")
+                    local snacks = require("snacks").picker
 					local opts = { buffer = ev.buf, noremap = true, silent = true }
 					local buf = vim.lsp.buf
 					local keymap = vim.keymap
 
 					opts.desc = "Go To Definition"
 					keymap.set("n", "gd", function()
-                        fzf.lsp_definitions()
+                        snacks.lsp_definitions()
 					end, opts)
 
 					opts.desc = "Go To References"
 					keymap.set("n", "gr", function()
-						fzf.lsp_references()
+						snacks.lsp_references()
+					end, opts)
+
+					opts.desc = "LSP Symbols"
+					keymap.set("n", "<leader>ss", function()
+						snacks.lsp_symbols()
 					end, opts)
 
 					opts.desc = "Rename"
