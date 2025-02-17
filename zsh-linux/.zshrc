@@ -61,7 +61,7 @@ setopt hist_ignore_all_dups
 setopt hist_ignore_space       # Ignores all commands starting with a blank space! Usefull for passwords
 
 ### ---- Aliases Configuration -----------------------------------
-alias ls="lsd"
+alias ls="eza --icons"
 alias zi="cdi"
 alias htop="btop"
 alias find="fd"
@@ -85,8 +85,8 @@ eval "$(starship init zsh)"
 
 export EDITOR=nvim
 
-if [ "$TERM_PROGRAM" = tmux ]; then
-    bindkey -e
-fi
+# if [ "$TERM_PROGRAM" = tmux ]; then
+#     bindkey -e
+# fi
 
-fastfetch
+pokego --no-title -r 1,3,6
