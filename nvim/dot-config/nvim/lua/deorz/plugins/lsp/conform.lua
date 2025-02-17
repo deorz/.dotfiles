@@ -12,12 +12,22 @@ return {
 				toml = { "taplo" },
 				python = { "ruff_format" },
 				go = { "goimports", "gofumpt" },
+				xml = { "xmlformat" },
+				json = { "jq" },
 			},
 			format_after_save = nil,
 		},
 		keys = {
-            -- stylua: ignore
-			{"<leader>cf", function() require("conform").format({ lsp_format = "fallback", async = true }) end, mode={ "n", "v" }, noremap = true, silent = true, desc = "Format file"},
+			{
+				"<leader>cf",
+				function()
+					require("conform").format({ lsp_format = "fallback", async = true })
+				end,
+				mode = { "n", "v" },
+				noremap = true,
+				silent = true,
+				desc = "Format file",
+			},
 		},
 	},
 }
