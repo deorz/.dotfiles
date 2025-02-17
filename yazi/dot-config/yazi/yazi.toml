@@ -1,0 +1,10 @@
+[manager]
+sort_by = "mtime"
+
+[opener]
+edit = [
+  { run = 'nvim "$@"', block = true, for = "unix", desc = "Edit" },
+]
+open = [
+    { run = 'xdg-open "$@"', for = "unix", desc = "Open" }
+]
