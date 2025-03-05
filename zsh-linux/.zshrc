@@ -88,5 +88,4 @@ export EDITOR=nvim
 # if [ "$TERM_PROGRAM" = tmux ]; then
 #     bindkey -e
 # fi
-
-pokego --no-title -r 1,3,6
+(( RANDOM % 2 )) && pokego --no-title -r 1,3,6 || fastfetch
