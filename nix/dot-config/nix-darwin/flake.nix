@@ -80,8 +80,8 @@
                     # dock.expose-group-by-app = true;
                     dock.mru-spaces = false;
                     dock.persistent-apps = [
-                        "/Applications/Arc.app"
-                        # "/Applications/WezTerm.app"
+                        "/Applications/Zen Browser.app"
+                        "/Applications/Alacritty.app"
                         "/System/Applications/Mail.app"
                         "/System/Applications/Calendar.app"
                         "/System/Applications/Messages.app"
