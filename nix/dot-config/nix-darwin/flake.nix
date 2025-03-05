@@ -50,14 +50,14 @@
                         "zlib"
                     ];
                     casks = [
+                        "zen-browser"
                         "alacritty"
                         "font-jetbrains-mono-nerd-font"
                         "telegram-desktop"
                         "tunnelblick"
                         "orbstack"
                         "mos"
-                        "qbittorrent"
-                        "balenaetcher"
+                        "syncthing"
                     ];
                     masApps = {
                         "Numbers" = 409203825;
