@@ -45,7 +45,7 @@ return {
 				desc = "Terminate running tests",
 			},
 			{
-				"<leader>trt",
+				"<leader>trd",
 				function()
 					require("neotest").run.run({ strategy = "dap" })
 				end,

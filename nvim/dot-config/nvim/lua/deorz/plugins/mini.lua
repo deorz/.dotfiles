@@ -49,7 +49,7 @@ return {
 					{ mode = "n", keys = "<Leader>g", desc = "Git" },
 					{ mode = "n", keys = "<Leader>n", desc = "Notifications" },
 					{ mode = "n", keys = "<Leader>s", desc = "Search" },
-					{ mode = "n", keys = "<Leader>t", desc = "Terminal" },
+					{ mode = "n", keys = "<Leader>t", desc = "Test" },
 					miniclue.gen_clues.builtin_completion(),
 					miniclue.gen_clues.g(),
 					miniclue.gen_clues.marks(),
