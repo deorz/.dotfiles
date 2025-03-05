@@ -66,7 +66,7 @@ setopt hist_ignore_all_dups
 setopt hist_ignore_space       # Ignores all commands starting with a blank space! Usefull for passwords
 
 ### ---- Aliases Configuration -----------------------------------
-alias ls="lsd"
+alias ls="eza --icons"
 alias zi="cdi"
 alias htop="btop"
 alias find="fd"
