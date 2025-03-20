@@ -34,11 +34,10 @@ zstyle ':fzf-tab:*' switch-group '<' '>'
 ### ------------------- Fzf Settings ------------------------------------
 # Setting theme for fzf
 export FZF_DEFAULT_OPTS="
-	--color=fg:#908caa,bg:#232136,hl:#ea9a97
-	--color=fg+:#e0def4,bg+:#393552,hl+:#ea9a97
-	--color=border:#44415a,header:#3e8fb0,gutter:#232136
-	--color=spinner:#f6c177,info:#9ccfd8
-	--color=pointer:#c4a7e7,marker:#eb6f92,prompt:#908caa"
+    $FZF_DEFAULT_OPTS
+    --color fg:7,bg:0,hl:1,fg+:232,bg+:1,hl+:255
+    --color info:7,prompt:2,spinner:1,pointer:232,marker:1"
+
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
@@ -85,7 +84,4 @@ eval "$(starship init zsh)"
 
 export EDITOR=nvim
 
-# if [ "$TERM_PROGRAM" = tmux ]; then
-#     bindkey -e
-# fi
-(( RANDOM % 2 )) && pokego --no-title -r 1,3,6 || fastfetch
+fastfetch --config examples/13
