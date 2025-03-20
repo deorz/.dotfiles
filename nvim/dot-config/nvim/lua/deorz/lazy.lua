@@ -31,8 +31,9 @@ require("lazy").setup({
 	-- colorscheme that will be used when installing plugins.
 	install = {
 		colorscheme = {
+			"pywal",
 			-- "tokyonight",
-			"rose-pine-moon"
+			-- "rose-pine-moon"
 			-- "catppuccin"
 		},
 	},
