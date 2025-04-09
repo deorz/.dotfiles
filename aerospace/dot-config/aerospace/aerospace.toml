@@ -1,4 +1,4 @@
-after-startup-command = ['exec-and-forget borders']
+# after-startup-command = ['exec-and-forget borders']
 
 [gaps]
 inner.horizontal = 12
@@ -22,6 +22,7 @@ outer.right =      12
 
 # All possible modifiers: cmd, alt, ctrl, shift
 # cmd-enter = 'exec-and-forget open -a wezterm'
+alt-t = 'exec-and-forget open -a Ghostty -n'
 
 alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
@@ -39,19 +40,25 @@ alt-shift-l = 'move right'
 alt-shift-minus = 'resize smart -50'
 alt-shift-equal = 'resize smart +50'
 
-alt-a = 'workspace Ai'
-alt-d = 'workspace Dev'
-alt-o = 'workspace Other'
-alt-s = 'workspace Social'
-alt-w = 'workspace Web'
+alt-1 = 'workspace Code'
+alt-2 = 'workspace Browser'
+alt-3 = 'workspace Social'
+alt-4 = 'workspace Testing'
+alt-5 = 'workspace Other'
 
-alt-shift-a = 'move-node-to-workspace Ai'
-alt-shift-d = 'move-node-to-workspace Dev'
-alt-shift-o = 'move-node-to-workspace Other'
-alt-shift-s = 'move-node-to-workspace Social'
-alt-shift-w = 'move-node-to-workspace Web'
+alt-shift-1 = 'move-node-to-workspace Code'
+alt-shift-2 = 'move-node-to-workspace Browser'
+alt-shift-3 = 'move-node-to-workspace Social'
+alt-shift-4 = 'move-node-to-workspace Testing'
+alt-shift-5 = 'move-node-to-workspace Other'
 
 alt-shift-backslash = 'mode service'
+
+# alt-c = 'mode code'
+# [mode.code.binding]
+# esc = 'mode main'
+# w = ['exec-and-forget open -a kitty -n --args --session ~/.config/kitty/work.conf', 'mode main']
+# d = ['exec-and-forget open -a kitty -n --args --session ~/.config/kitty/dotfiles.conf', 'mode main']
 
 [mode.service.binding]
 esc = 'mode main'
@@ -64,41 +71,3 @@ alt-shift-h = ['join-with left', 'mode main']
 alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
-
-# Float
-[[on-window-detected]]
-if.app-id = 'com.apple.systempreferences'
-run = 'layout floating'
-
-[[on-window-detected]]
-if.app-id = 'e.AmneziaVPN'
-run = 'layout floating'
-
-# Dev
-[[on-window-detected]]
-if.app-id = 'com.github.wez.wezterm'
-run = 'move-node-to-workspace Dev'
-
-# Web
-[[on-window-detected]]
-if.app-id = 'company.thebrowser.Browser'
-run = 'move-node-to-workspace Web'
-
-# Social
-[[on-window-detected]]
-if.app-id = 'ru.keepcoder.Telegram'
-run = 'move-node-to-workspace Social'
-
-[[on-window-detected]]
-if.app-id = 'com.apple.mail'
-run = 'move-node-to-workspace Social'
-
-# Ai
-[[on-window-detected]]
-if.app-id = 'jan.ai.app'
-run = 'move-node-to-workspace Ai'
-
-[[on-window-detected]]
-if.app-id = 'com.openai.chat'
-run = 'move-node-to-workspace Ai'
-
