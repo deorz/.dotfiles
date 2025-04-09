@@ -105,4 +105,4 @@ eval "$(zoxide init --cmd cd zsh)"
 eval "$(fzf --zsh)"
 eval "$(starship init zsh)"
 
-fastfetch
+fastfetch --config examples/13
