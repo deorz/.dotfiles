@@ -15,7 +15,6 @@
                 # $ nix-env -qaP | grep wget
                 environment.systemPackages =
                     [
-                        pkgs.lsd
                         pkgs.eza
                         pkgs.fd
                         pkgs.ripgrep
@@ -35,7 +34,6 @@
                         pkgs.poetry
                         pkgs.pyenv
                         pkgs.tmux
-                        pkgs.tmuxinator
                     ];
 
                 homebrew = {
@@ -49,15 +47,20 @@
                         "libjpeg"
                         "zlib"
                     ];
+                    taps = [
+                        "nikitabobko/tap"
+                    ];
                     casks = [
-                        "zen-browser"
-                        "alacritty"
+                        "aerospace"
+                        "ghostty"
                         "font-jetbrains-mono-nerd-font"
+                        "font-monaspace"
                         "telegram-desktop"
                         "tunnelblick"
                         "orbstack"
                         "mos"
                         "syncthing"
+                        "zed"
                     ];
                     masApps = {
                         "Numbers" = 409203825;
@@ -80,8 +83,8 @@
                     # dock.expose-group-by-app = true;
                     dock.mru-spaces = false;
                     dock.persistent-apps = [
-                        "/Applications/Zen Browser.app"
-                        "/Applications/Alacritty.app"
+                        "/Applications/Arc.app"
+                        "/Applications/Ghostty.app"
                         "/System/Applications/Mail.app"
                         "/System/Applications/Calendar.app"
                         "/System/Applications/Messages.app"
