@@ -1,4 +1,66 @@
 return {
+	{
+		"olimorris/codecompanion.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
+		opts = {
+			strategies = {
+				chat = {
+					adapter = "openai_compatible",
+					slash_commands = {
+						["file"] = {
+							callback = "strategies.chat.slash_commands.file",
+							description = "Select a file using Snacks",
+							opts = {
+								provider = "snacks",
+								contains_code = true,
+							},
+						},
+					},
+				},
+				inline = {
+					adapter = "openai_compatible",
+				},
+			},
+			display = {
+				chat = {
+					auto_scroll = true,
+					show_settings = true,
+				},
+			},
+			adapters = {
+				openai_compatible = function()
+					local command = "echo -n $(cat " .. vim.fn.expand("$HOME") .. "/.config/nvim/key.txt)"
+					local key = vim.fn.system(command)
+					vim.env["OPENAI_COMPATIBLE_API_KEY"] = key
+					return require("codecompanion.adapters").extend("openai_compatible", {
+						env = {
+							api_key = "OPENAI_COMPATIBLE_API_KEY",
+							url = "https://api.proxyapi.ru/openai",
+						},
+						schema = {
+							model = {
+								default = "gpt-4o",
+								choises = { "gpt-4o", "gpt-4o-mini" },
+							},
+						},
+					})
+				end,
+			},
+		},
+		keys = {
+			{
+				"<leader>aa",
+				"<cmd>CodeCompanionActions<cr>",
+				"n",
+				noremap = true,
+				silent = true,
+				desc = "AI Actions",
+			},
+		},
+	},
 	-- {
 	-- 	"yetone/avante.nvim",
 	-- 	event = "VeryLazy",
