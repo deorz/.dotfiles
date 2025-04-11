@@ -48,31 +48,23 @@ return {
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 				callback = function(ev)
-                    local snacks = require("snacks").picker
+					local snacks = require("snacks").picker
 					local opts = { buffer = ev.buf, noremap = true, silent = true }
 					local buf = vim.lsp.buf
 					local keymap = vim.keymap
 
-					opts.desc = "Go To Definition"
-					keymap.set("n", "gd", function()
-                        snacks.lsp_definitions()
-					end, opts)
+					buf.references = snacks.lsp_references
+					buf.definition = snacks.lsp_definitions
 
-					opts.desc = "Go To References"
-					keymap.set("n", "gr", function()
-						snacks.lsp_references()
+					opts.desc = "Go To Definition"
+					keymap.set("n", "grd", function()
+						snacks.lsp_definitions()
 					end, opts)
 
 					opts.desc = "LSP Symbols"
 					keymap.set("n", "<leader>ss", function()
 						snacks.lsp_symbols()
 					end, opts)
-
-					opts.desc = "Rename"
-					keymap.set("n", "<leader>cr", buf.rename, opts)
-
-					opts.desc = "Code Actions"
-					keymap.set({ "n", "v" }, "<leader>ca", buf.code_action, opts)
 				end,
 			})
 
