@@ -1,0 +1,10 @@
+---
+name: dev
+path: ~/Developer
+windows:
+  - name: Code
+  - name: Docker
+  - name: Other
+  - name: Kubenetes
+  - name: Files
+

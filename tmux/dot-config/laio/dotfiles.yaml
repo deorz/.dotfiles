@@ -1,0 +1,10 @@
+---
+name: dotfiles
+path: ~/.dotfiles
+windows:
+  - name: Dotfiles
+  - name: Other
+  - name: Config
+    panes:
+      - flex: 1
+        path: ~/.config

@@ -1,0 +1,15 @@
+---
+name: work
+path: ~/Work
+windows:
+  - name: Code
+  - name: Docker
+    panes:
+      - flex: 1
+        path: vocabulary/docker
+  - name: Other
+  - name: Kubenetes
+    panes:
+      - flex: 1
+        path: kubernetes
+  - name: Files
