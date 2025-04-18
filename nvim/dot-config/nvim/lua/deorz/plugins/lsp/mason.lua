@@ -1,7 +1,7 @@
 return {
 	{
 		"williamboman/mason.nvim",
-        cmd = "Mason",
+		cmd = "Mason",
 		opts = {
 			ensure_installed = {
 				"bash-language-server",
@@ -18,6 +18,7 @@ return {
 				"stylua",
 				"taplo",
 				"tree-sitter-cli",
+				"xmlformatter",
 				"yaml-language-server",
 				"yamlfix",
 			},
