@@ -42,6 +42,7 @@
                         "zsh-syntax-highlighting"
                         "zsh-autosuggestions"
                         "nvm"
+                        "laio"
 
                         # Only for building Pillow...
                         "libjpeg"
@@ -49,6 +50,11 @@
                     ];
                     taps = [
                         "nikitabobko/tap"
+                        {
+                            name = "ck3mp3r/laio-cli";
+                            clone_target = "https://github.com/ck3mp3r/laio-cli/";
+                            force_auto_update = true;
+                        }
                     ];
                     casks = [
                         "aerospace"
