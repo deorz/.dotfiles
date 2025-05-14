@@ -1,5 +1,6 @@
 require("nvchad.configs.lspconfig").defaults()
 
+vim.api.nvim_clear_autocmds({ event = "LspAttach" })
 
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", {}),
