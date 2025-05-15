@@ -13,7 +13,6 @@ vim.o.list = true
 vim.o.listchars = table.concat({ "extends:…", "nbsp:␣", "precedes:…", "tab:→ ", "trail:·" }, ",")
 
 opt.termguicolors = true
-opt.colorcolumn = "120"
 
 opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
 -- go to previous/next line with h,l,left arrow and right arrow
