@@ -1,12 +1,12 @@
 # after-startup-command = ['exec-and-forget borders']
 
 [gaps]
-inner.horizontal = 12
-inner.vertical =   12
-outer.left =       12
-outer.bottom =     12
-outer.top =        12
-outer.right =      12
+inner.horizontal = 20
+inner.vertical =   20
+outer.left =       20
+outer.bottom =     20
+outer.top =        20
+outer.right =      20
 
 [mode.main.binding]
 # All possible keys:
@@ -22,7 +22,7 @@ outer.right =      12
 
 # All possible modifiers: cmd, alt, ctrl, shift
 # cmd-enter = 'exec-and-forget open -a wezterm'
-alt-t = 'exec-and-forget open -a Ghostty -n'
+alt-t = 'exec-and-forget open -a Alacritty -n'
 
 alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
