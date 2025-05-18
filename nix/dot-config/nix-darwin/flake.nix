@@ -58,7 +58,7 @@
                     ];
                     casks = [
                         "aerospace"
-                        "ghostty"
+                        "alacritty"
                         "font-jetbrains-mono-nerd-font"
                         "font-monaspace"
                         "telegram-desktop"
@@ -67,6 +67,7 @@
                         "mos"
                         "syncthing"
                         "zed"
+                        "betterdisplay"
                     ];
                     masApps = {
                         "Numbers" = 409203825;
