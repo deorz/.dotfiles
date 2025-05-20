@@ -7,6 +7,7 @@ import = [
 padding.x = 15
 padding.y = 15
 decorations = "buttonless"
+option_as_alt = "Both"
 
 [font]
 size = 12
