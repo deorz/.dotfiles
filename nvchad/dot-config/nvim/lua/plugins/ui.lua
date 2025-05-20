@@ -1,7 +1,7 @@
 return {
   {
     "rcarriga/nvim-notify",
-    event = "VeryLazy",
+    lazy = false,
     opts = {
       background_colour = "#000000",
       render = "compact",
@@ -13,5 +13,15 @@ return {
       notify.setup(opts)
       vim.notify = notify
     end,
+  },
+  {
+    "stevearc/dressing.nvim",
+    lazy = false,
+    opts = {},
+  },
+  {
+    "stevearc/quicker.nvim",
+    event = "FileType qf",
+    opts = {},
   },
 }
