@@ -1,3 +1,4 @@
+### ------------------------------------------ Zsh Plugins -----------------------------------------------------------
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
 source "${ZINIT_HOME}/zinit.zsh"
@@ -10,15 +11,12 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 zinit light jeffreytse/zsh-vi-mode
 
-zinit snippet OMZP::git
-zinit snippet OMZP::sudo
-zinit snippet OMZP::kubectl
-zinit snippet OMZP::kubectx
-zinit snippet OMZP::command-not-found
-
 autoload -Uz compinit && compinit
 
 zinit cdreplay -q
+
+### ----------------------------------------- Completion Options and Styling ------------------------------------------
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 ### ----------------------------------------- History Configuration ---------------------------------------------------
 HISTSIZE=1000000                # How many lines of history to keep in memory
@@ -52,7 +50,8 @@ source "$HOME/.cargo/env"
 eval "$(pyenv init -)"
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(fzf --zsh)"
-
+eval "$(starship init zsh)"
 
 ### ----------------------------------------- Shell commands (fetchers, etc.) -----------------------------------------
-fastfetch --config examples/13
+fastfetch
+# fastfetch --config examples/13
