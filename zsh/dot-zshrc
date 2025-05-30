@@ -1,6 +1,12 @@
 ### ------------------------------------------ Zsh Plugins -----------------------------------------------------------
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
+# Download Zinit, if it's not there yet
+if [ ! -d "$ZINIT_HOME" ]; then
+    bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
+    zinit self-update
+fi
+
 source "${ZINIT_HOME}/zinit.zsh"
 
 zinit ice depth=1
