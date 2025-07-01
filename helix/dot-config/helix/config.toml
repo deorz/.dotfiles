@@ -1,4 +1,4 @@
-theme = "catppuccin_mocha"
+theme = "tokyonight"
 
 [editor]
 middle-click-paste = false
@@ -7,6 +7,11 @@ auto-format = false
 undercurl = true
 color-modes = true
 insert-final-newline = false
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
 
 [editor.statusline]
 left = ["mode", "spacer", "version-control", "file-name", "spinner"]
