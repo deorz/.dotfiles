@@ -17,6 +17,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
     keymap.set("n", "grd", function()
       telescope.lsp_definitions()
     end, opts)
+
+    keymap.set("n", "<leader>K", function()
+      vim.diagnostic.open_float(nil, { focusable = false })
+    end, opts)
   end,
 })
 

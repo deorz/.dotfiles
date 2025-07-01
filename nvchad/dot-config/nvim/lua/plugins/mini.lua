@@ -10,9 +10,19 @@ return {
     },
     keys = {
       {
-        "<leader>ee",
+        "<leader>E",
         function()
           require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
+        end,
+        "n",
+        noremap = true,
+        silent = true,
+        desc = "Open file explorer",
+      },
+      {
+        "<leader>e",
+        function()
+          require("mini.files").open()
         end,
         "n",
         noremap = true,

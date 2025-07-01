@@ -4,22 +4,17 @@ return {
     ft = { "http", "rest" },
     opts = {
       global_keymaps = true,
+      global_keymaps_prefix = "<leader>r",
+      lsp = {
+        formatter = true,
+      },
+      contenttypes = {
+        ["application/x-iata.ndc.v1+xml"] = {
+          ft = "xml",
+          formatter = { "xmllint", "--format", "-" },
+          pathresolver = { "xmllint", "--xpath", "{{path}}", "-" },
+        },
+      },
     },
-    -- keys = {
-    --   {
-    --     "<leader>Rb",
-    --     function()
-    --       require("kulala").scratchpad()
-    --     end,
-    --     desc = "Open scratchpad",
-    --   },
-    --   {
-    --     "<leader>Rs",
-    --     function()
-    --       require("kulala").run()
-    --     end,
-    --     mode = { "n", "v" },
-    --   },
-    -- },
   },
 }
