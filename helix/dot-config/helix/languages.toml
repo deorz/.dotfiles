@@ -5,7 +5,7 @@ language-servers = ["pyright", "ruff"]
 
 [language.formatter]
 command = "ruff"
-args = ["format"]
+args = ["format", "-"]
 
 [language-server.pyright]
 command = "pyright-langserver"
@@ -15,9 +15,9 @@ args = ["--stdio"]
 disableOrganizeImports = true
 
 [language-server.pyright.config.python.analysis]
-typeCheckingMode = "standard"
+typeCheckingMode = "strict"
+diagnosticMode = "workspace"
 
 [language-server.ruff]
 command = "ruff"
-args = ["server"]
-environment = { "RUFF_TRACE" = "messages" }
+args = ["server", "-q"]

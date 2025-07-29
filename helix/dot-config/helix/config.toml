@@ -1,4 +1,4 @@
-theme = "tokyonight"
+theme = "gruvbox"
 
 [editor]
 middle-click-paste = false
@@ -21,29 +21,6 @@ separator = "│"
 mode.normal = "NORMAL"
 mode.insert = "INSERT"
 mode.select = "SELECT"
-
-[keys.normal.space]
-f = "no_op"
-F = "no_op"
-b = "no_op"
-j = "no_op"
-g = "no_op"
-# s = "no_op"
-S = "no_op"
-d = "no_op"
-D = "no_op"
-
-[keys.normal.space.s]
-f = "file_picker"
-F = "file_picker_in_current_directory"
-b = "buffer_picker"
-j = "jumplist_picker"
-g = "changed_file_picker"
-s = "symbol_picker"
-S = "workspace_symbol_picker"
-d = "diagnostics_picker"
-D = "workspace_diagnostics_picker"
-"/" = "global_search"
 
 [keys.normal.space.l]
 g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
